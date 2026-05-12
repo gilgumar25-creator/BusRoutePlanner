@@ -1,0 +1,27 @@
+<header th:fragment="cabecera">
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">
+					<img th:src="@{/img/Logonavbar.png}" class="rounded-pill sticky-top" style="width:200px;"
+						alt="Mi Imagen" />
+				</a>
+				<div class="collapse navbar-collapse d-flex justify-content-end" id="mynavbar">
+					<ul class="navbar-nav ms-auto pe-5">
+						<li class="nav-item pe-4">
+							<a class="nav-link text text-white fs-5" href="javascript:void(0)">Inicio</a>
+						</li>
+						<li class="nav-item pe-4">
+							<a class="nav-link text text-white fs-5" href="javascript:void(0)">Rutas</a>
+						</li>
+						<li class="nav-item pe-4">
+							<a class="nav-link text text-white fs-5" href="javascript:void(0)">Horarios</a>
+						</li>
+					</ul>
+					<form class="d-flex">
+						<input class="form-control me-2" type="text" placeholder="Buscar">
+						<button class="btn btn-primary" type="button">Buscar</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+	</header>
