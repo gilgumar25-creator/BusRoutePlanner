@@ -7,15 +7,17 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.busrouteplannermariogil.entity.Route;
+import com.salesianostriana.dam.busrouteplannermariogil.repositories.RouteRepository;
+import com.salesianostriana.dam.busrouteplannermariogil.servicebase.BaseServiceImplem;
 
 
 
 @Service
-public class RouteService {
+public class RouteService extends BaseServiceImplem<Route,Long,RouteRepository>{
 	public List<Route> getLista () {
 		return Arrays.asList(
-				new Route(152, "Palomares del Río","República Argentina",2),
-				new Route(153, "Palomares del Río","Blas Infante",3)
+				new Route( "Palomares del Río","República Argentina",2),
+				new Route( "Palomares del Río","Blas Infante",3)
 				);
 
 	}
@@ -29,6 +31,8 @@ private List <Route> listaRutas = new ArrayList <Route>();
 	public List<Route> getlistaRutas (){
 		return listaRutas; 
 	}
+	
+	
 	
 	
 

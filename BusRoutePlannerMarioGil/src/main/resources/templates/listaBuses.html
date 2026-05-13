@@ -11,23 +11,19 @@
 
 <body>
 	
-	<h1>LISTA DE RUTAS</h1>
+	<h1>LISTA DE BUSES</h1>
 	<table class="table-bordered table-hover">
 		<thead class="table-success">
 			<tr>
-				<th>Codigo</th>
-				<th>Origen</th>
-				<th>Destino</th>
-				<th>NumeroMáximoBusesSimultáneos</th>
+				<th>Matrícula</th>
+				<th>Capacidad</th>
 			</tr>
 		</thead>
 
 		<tbody>
-			<tr th:each="route : ${routesList}">
-				<td th:text="${route.codigo}">sin codigo</td>
-				<td th:text="${route.origen}">sin origen</td>
-				<td th:text="${route.destino}">sin destino</td>
-				<td th:text="${route.numeroMaximoBusesSimultaneos}">Sin limite</td>
+			<tr th:each="route : ${busList}">
+				<td th:text="${bus.matricula}">sin matrícula</td>
+				<td th:text="${bus.capacidad}">sin límite</td>
 
 			</tr>
 		</tbody>

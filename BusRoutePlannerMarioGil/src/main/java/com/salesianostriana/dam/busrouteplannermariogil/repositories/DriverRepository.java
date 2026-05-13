@@ -1,5 +1,9 @@
 package com.salesianostriana.dam.busrouteplannermariogil.repositories;
 
-public class DriverRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.salesianostriana.dam.busrouteplannermariogil.entity.Driver;
+
+public interface DriverRepository extends JpaRepository <Driver,Long> {
 
 }

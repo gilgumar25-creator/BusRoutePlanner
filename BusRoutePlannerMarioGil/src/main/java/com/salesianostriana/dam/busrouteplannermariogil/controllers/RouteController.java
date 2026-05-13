@@ -22,7 +22,6 @@ public RouteController(RouteService servicio) {
 	@GetMapping("/Ruta")
 	public String showRutas(Model model) {
 		Route C2 = new Route(
-				19754,
 				"Avenida del Aljarafe,Palomares del Río",
 				"Parque de las Delicias",
 				2
@@ -37,7 +36,7 @@ public RouteController(RouteService servicio) {
 	}
 		
 	@GetMapping("/listaRutas")
-	public String showLista(Model model) {
+	public String showListaRutas(Model model) {
 		
 		model.addAttribute("routesList",service.getLista());
 		
@@ -55,7 +54,7 @@ public RouteController(RouteService servicio) {
 	public String processForm(@ModelAttribute("route")Route ruta) {
 		service.addRuta(ruta);
 		
-		return "redirect:/";
+		return "redirect:/index";
 		
 		
 	}
