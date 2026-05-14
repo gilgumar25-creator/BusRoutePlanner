@@ -21,10 +21,10 @@ public class Driver {
 	
 	private String nombre;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	/*@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_bus",
 		foreignKey = @ForeignKey(name = "fk_driver_bus"))
-	private Bus bus;
+	private Bus bus;*/
 	
 
 	

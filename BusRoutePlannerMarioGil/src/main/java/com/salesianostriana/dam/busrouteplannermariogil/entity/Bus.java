@@ -24,10 +24,10 @@ public class Bus {
 	
 	private int capacidad;
 	
-	@OneToMany(mappedBy = "bus", fetch = FetchType.EAGER)
+	/*@OneToMany(mappedBy = "bus", fetch = FetchType.EAGER)
 	@ToString.Exclude
 	@Builder.Default
-	private List<Driver> drivers = new ArrayList<>();
+	private List<Driver> drivers = new ArrayList<>();*/
 	
 	
 
