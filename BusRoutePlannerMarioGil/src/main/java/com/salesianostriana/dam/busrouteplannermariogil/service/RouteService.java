@@ -16,8 +16,8 @@ import com.salesianostriana.dam.busrouteplannermariogil.servicebase.BaseServiceI
 public class RouteService extends BaseServiceImplem<Route,Long,RouteRepository>{
 	public List<Route> getLista () {
 		return Arrays.asList(
-				new Route( "Palomares del Río","República Argentina",2),
-				new Route( "Palomares del Río","Blas Infante",3)
+				new Route(152L, "Palomares del Río","República Argentina",2),
+				new Route(153L, "Palomares del Río","Blas Infante",3)
 				);
 
 	}

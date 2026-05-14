@@ -14,8 +14,8 @@ import com.salesianostriana.dam.busrouteplannermariogil.servicebase.BaseServiceI
 public class BusService extends BaseServiceImplem<Bus,Long,BusRepository>{
 	public List<Bus> getLista () {
 		return Arrays.asList(
-				new Bus(),
-				new Bus()
+				new Bus(58896546L,100),
+				new Bus(83819128L,97)
 				);
 
 	}
