@@ -14,9 +14,15 @@ import com.salesianostriana.dam.busrouteplannermariogil.servicebase.BaseServiceI
 public class DriverService extends BaseServiceImplem<Driver,Long,DriverRepository>{
 	public List<Driver> getLista () {
 		return Arrays.asList(
-				new Driver(298651L,"Mario"),
-				new Driver(573917L,"Daniel")
-				);
+				Driver.builder()
+	            .licencia(92816546L)
+	            .nombre("Mortadelo")
+	            .build(),
+	        Driver.builder()
+	            .licencia(11929128L)
+	            .nombre("Filemon")
+	            .build()
+	    );
 
 	}
 private List <Driver> listaDrivers = new ArrayList <Driver>();

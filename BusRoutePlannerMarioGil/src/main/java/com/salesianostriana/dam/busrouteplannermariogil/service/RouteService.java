@@ -16,9 +16,19 @@ import com.salesianostriana.dam.busrouteplannermariogil.servicebase.BaseServiceI
 public class RouteService extends BaseServiceImplem<Route,Long,RouteRepository>{
 	public List<Route> getLista () {
 		return Arrays.asList(
-				new Route(152L, "Palomares del Río","República Argentina",2),
-				new Route(153L, "Palomares del Río","Blas Infante",3)
-				);
+				Route.builder()
+	            .codigo(152L)
+	            .origen("Palomares del Río")
+	            .destino("Parque de las delicias")
+	            .numeroMaximoBusesSimultaneos(100)
+	            .build(),
+		        Route.builder()
+		        .codigo(142L)
+	            .origen("Coria del Río")
+	            .destino("Parque de las delicias")
+	            .numeroMaximoBusesSimultaneos(100)
+	            .build()
+	    );
 
 	}
 private List <Route> listaRutas = new ArrayList <Route>();
