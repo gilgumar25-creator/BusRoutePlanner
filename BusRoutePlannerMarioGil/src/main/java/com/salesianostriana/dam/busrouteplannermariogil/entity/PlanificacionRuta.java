@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.busrouteplannermariogil.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,13 +25,13 @@ public class PlanificacionRuta {
     @GeneratedValue
     private Long codigo;
 
-    private String diaSemana;
+    private LocalDateTime diaSemana;
 
     @Enumerated(EnumType.STRING)
     private Horario horario;
 
     @ManyToOne
-    @JoinColumn(name = "ruta_id")
+    @JoinColumn(name = "route_id")
     private Route route;
 
     @ManyToOne
