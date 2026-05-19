@@ -1,7 +1,5 @@
 package com.salesianostriana.dam.busrouteplannermariogil.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -10,40 +8,21 @@ import com.salesianostriana.dam.busrouteplannermariogil.entity.Route;
 import com.salesianostriana.dam.busrouteplannermariogil.repositories.RouteRepository;
 import com.salesianostriana.dam.busrouteplannermariogil.servicebase.BaseServiceImplem;
 
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 
-
+@AllArgsConstructor
 @Service
-public class RouteService extends BaseServiceImplem<Route,Long,RouteRepository>{
-	public List<Route> getLista () {
-		return Arrays.asList(
-				Route.builder()
-	            .codigo(152L)
-	            .origen("Palomares del Río")
-	            .destino("Parque de las delicias")
-	            .numeroMaximoBusesSimultaneos(100)
-	            .build(),
-		        Route.builder()
-		        .codigo(142L)
-	            .origen("Coria del Río")
-	            .destino("Parque de las delicias")
-	            .numeroMaximoBusesSimultaneos(100)
-	            .build()
-	    );
+public class RouteService extends BaseServiceImplem<Route, Long, RouteRepository> {
 
-	}
-private List <Route> listaRutas = new ArrayList <Route>();
-	
-	public void addRuta (Route r) {
-		listaRutas.add(r);
-	
-	}
-	
-	public List<Route> getlistaRutas (){
-		return listaRutas; 
-	}
-	
-	
-	
-	
+	private final RouteRepository repository;
 
+	//@Transactional
+	public void saveRuta(Route r) {
+		repository.save(r);
+	}
+
+	public List<Route> findAll() {
+		return repository.findAll();
+	}
 }
