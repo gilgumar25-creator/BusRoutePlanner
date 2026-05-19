@@ -17,7 +17,7 @@ import lombok.ToString;
 @Data @NoArgsConstructor @AllArgsConstructor @Entity @Builder
 public class Route {
 	
-	@Id @GeneratedValue
+	@Id 
 	private Long codigo;
 	
 	private String origen;
@@ -25,14 +25,17 @@ public class Route {
 	private String destino;
 	
 	private int numeroMaximoBusesSimultaneos;
-
-	public Route(String origen, String destino, int numeroMaximoBusesSimultaneos) {
+	
+	public Route(Long codigo, String origen, String destino, int numeroMaximoBusesSimultaneos) {
 		super();
+		this.codigo = codigo;
 		this.origen = origen;
 		this.destino = destino;
 		this.numeroMaximoBusesSimultaneos = numeroMaximoBusesSimultaneos;
 	}
-	
+
+
+
 	@OneToMany(mappedBy = "route", fetch = FetchType.EAGER)
 	@ToString.Exclude
 	@Builder.Default

@@ -5,12 +5,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.busrouteplannermariogil.entity.Driver;
 import com.salesianostriana.dam.busrouteplannermariogil.service.DriverService;
 
 
 @Controller
+@RequestMapping("/driver")
 public class DriverController {
 	
 private final DriverService service;

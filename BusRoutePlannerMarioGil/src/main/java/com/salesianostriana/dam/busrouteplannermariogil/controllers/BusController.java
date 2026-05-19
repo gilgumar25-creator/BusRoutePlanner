@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.busrouteplannermariogil.entity.Bus;
 import com.salesianostriana.dam.busrouteplannermariogil.service.BusService;
@@ -12,6 +13,7 @@ import com.salesianostriana.dam.busrouteplannermariogil.service.BusService;
 
 
 @Controller
+@RequestMapping("/bus")
 public class BusController {
 	
 private final BusService service;
