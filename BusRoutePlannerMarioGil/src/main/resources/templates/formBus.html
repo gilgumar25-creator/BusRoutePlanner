@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Añadir Nuevo Autobús</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body class="bg-light">
+
+
+	<div class="container min-vh-100 d-flex justify-content-center align-items-center py-5">
+		<div class="col-10 col-sm-8 col-md-6 col-lg-5">
+
+			<div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+				<div class="card-header bg-dark text-white py-4 border-0">
+					<div class="d-flex align-items-center justify-content-center gap-2">
+						<h2 class="h5 fw-bold mb-0 text-uppercase tracking-wider">Nuevo Autobús</h2>
+						<i class="bi bi-bus-front text-success fs-4"></i>
+					</div>
+				</div>
+
+				<div class="card-body p-4 bg-white">
+					<form th:action="@{/guardarBus/submit}" th:object="${bus}" method="POST">
+
+						<div class="form-floating mb-3">
+							<input type="text" inputmode="numeric" pattern="[0-9]*" id="matricula" th:field="*{matricula}"
+								class="form-control rounded-3" placeholder="Matrícula" required />
+							<label for="matricula" class="text-secondary">Número de Matrícula (Solo números)</label>
+						</div>
+
+						<div class="form-floating mb-4">
+							<input type="number" min="1" id="capacidad" th:field="*{capacidad}"
+								class="form-control rounded-3" placeholder="Capacidad" required />
+							<label for="capacidad" class="text-secondary">Capacidad (Nº de Pasajeros)</label>
+						</div>
+
+						<div class="d-grid gap-2">
+							<button type="submit" class="btn btn-success py-2.5 fw-bold rounded-3 shadow-sm ">
+								<i class="bi bi-check-circle me-2"></i>Guardar Autobús
+							</button>
+
+							<a th:href="@{/listaBuses}" class="btn btn-outline-danger py-2.5 rounded-3 ">
+								<i class="bi bi-arrow-left me-2"></i>Cancelar
+							</a>
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+
+</html>>

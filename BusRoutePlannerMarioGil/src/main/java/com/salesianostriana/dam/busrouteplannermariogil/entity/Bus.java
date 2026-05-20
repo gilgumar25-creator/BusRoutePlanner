@@ -22,7 +22,7 @@ import jakarta.persistence.ForeignKey;
 @Entity @Builder
 public class Bus {
 	
-	@Id @GeneratedValue
+	@Id 
 	private Long matricula;
 	
 	private int capacidad;

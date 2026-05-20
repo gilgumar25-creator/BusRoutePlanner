@@ -14,18 +14,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Data @NoArgsConstructor @AllArgsConstructor @Entity @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Builder
 public class Route {
-	
-	@Id 
+
+	@Id
 	private Long codigo;
-	
+
 	private String origen;
-	
+
 	private String destino;
-	
+
+	// @Min(value = 1, message = "El nºmáximo de buses simultáneos tiene que ser
+	// mínimo 1")
 	private int numeroMaximoBusesSimultaneos;
-	
+
 	public Route(Long codigo, String origen, String destino, int numeroMaximoBusesSimultaneos) {
 		super();
 		this.codigo = codigo;
@@ -34,15 +40,9 @@ public class Route {
 		this.numeroMaximoBusesSimultaneos = numeroMaximoBusesSimultaneos;
 	}
 
-
-
 	@OneToMany(mappedBy = "route", fetch = FetchType.EAGER)
 	@ToString.Exclude
 	@Builder.Default
 	private List<Bus> buses = new ArrayList<>();
-	
-	
-	
-	
 
 }
