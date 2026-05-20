@@ -26,10 +26,7 @@ public class Bus {
 	private Long matricula;
 	
 	private int capacidad;
-	
-<<<<<<< HEAD
-	/*@OneToMany(mappedBy = "bus", fetch = FetchType.EAGER)
-=======
+
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_route",
@@ -37,10 +34,9 @@ public class Bus {
 	private Route route;
 	
 	@OneToMany(mappedBy = "bus", fetch = FetchType.EAGER)
->>>>>>> develop
 	@ToString.Exclude
 	@Builder.Default
-	private List<Driver> drivers = new ArrayList<>();*/
+	private List<Driver> drivers = new ArrayList<>();
 	
 
 }

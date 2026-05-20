@@ -46,11 +46,11 @@ public class RouteController {
 	@GetMapping("/editar/{id}")
 	public String editarRuta(@PathVariable("id") Long id, Model model) {
 
-		Optional<Route> route = service.findById(id);
+		Optional <Route> route = service.findById(id);
 
 		if (route.isPresent()) {
-			model.addAttribute("route", route);
-			return "formRuta";
+			model.addAttribute("route", route.get());
+			return "formRuta/guardarRuta/submit";
 		} else {
 			return "redirect:/listaRutas";
 		}
