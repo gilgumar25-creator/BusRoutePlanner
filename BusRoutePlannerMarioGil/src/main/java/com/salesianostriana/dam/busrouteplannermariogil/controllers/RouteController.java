@@ -16,6 +16,7 @@ import com.salesianostriana.dam.busrouteplannermariogil.service.RouteService;
 @Controller
 public class RouteController {
 
+<<<<<<< HEAD
     private final RouteService service;
 
     public RouteController(RouteService service) {
@@ -51,15 +52,59 @@ public class RouteController {
 		if (route.isPresent()) {
 			model.addAttribute("route", route.get());
 			return "formRuta/guardarRuta/submit";
+=======
+	private final RouteService service;
+
+	public RouteController(RouteService service) {
+		this.service = service;
+	}
+
+	@GetMapping("/listaRutas")
+	public String listarRutas(Model model) {
+		model.addAttribute("routesList", service.findAll());
+		return "listaRutas";
+	}
+
+	@GetMapping("/nuevaRuta")
+	public String nuevaRuta(Model model) {
+		model.addAttribute("route", new Route());
+		return "formRuta";
+	}
+
+	@PostMapping("/guardarRuta/submit")
+	public String submitNuevaRuta(@ModelAttribute("route") Route route) {
+		// service.save(route);
+		service.save(route);
+
+		return "redirect:/listaRutas";
+	}
+
+	@GetMapping("/editar/{codigo}")
+	public String editarRuta(@PathVariable("codigo") Long codigo, Model model) {
+
+		Optional<Route> route = service.findById(codigo);
+
+		if (route.isPresent()) {
+			model.addAttribute("route", route.get());
+			return "formRuta";
+>>>>>>> 26-fe12-editruta
 		} else {
 			return "redirect:/listaRutas";
 		}
 	}
+<<<<<<< HEAD
 	
 	@GetMapping("/borrar/{id}")
 	public String borrarProducto(@PathVariable("id") Long id, Model model) {
 
 		Optional<Route> route = service.findById(id);
+=======
+
+	@GetMapping("/borrar/{codigo}")
+	public String borrarProducto(@PathVariable("codigo") Long codigo, Model model) {
+
+		Optional<Route> route = service.findById(codigo);
+>>>>>>> 26-fe12-editruta
 
 		if (route.isPresent()) {
 			service.delete(route.get());
@@ -67,8 +112,15 @@ public class RouteController {
 		return "redirect:/listaRutas";
 	}
 
+<<<<<<< HEAD
     @GetMapping("/Registro")
     public String register(Model model) {
         return "registrousuario";
     }
+=======
+	@GetMapping("/Registro")
+	public String register(Model model) {
+		return "registrousuario";
+	}
+>>>>>>> 26-fe12-editruta
 }
