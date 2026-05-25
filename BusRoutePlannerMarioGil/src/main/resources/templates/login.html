@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - BusRoute Planner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="bg-dark text-light d-flex align-items-center vh-100">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-5">
+
+                <div class="card bg-dark border-warning border-2 shadow p-4 p-sm-5">
+                    <div class="card-body">
+
+                        <div class="text-center mb-5">
+                            <h1 class="fw-bold text-warning mb-2 fs-1">BusRoute Planner</h1>
+                            <p class="text-muted fs-6">Acceso obligatorio al sistema de gestión</p>
+                        </div>
+
+                        <div th:if="${param.error}" class="alert alert-danger d-flex align-items-center mb-4 py-3" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill fs-5 me-3"></i>
+                            <div>Usuario o contraseña incorrectos.</div>
+                        </div>
+
+                        <div th:if="${param.logout}" class="alert alert-success d-flex align-items-center mb-4 py-3" role="alert">
+                            <i class="bi bi-check-circle-fill fs-5 me-3"></i>
+                            <div>Sesión cerrada correctamente.</div>
+                        </div>
+
+                        <form th:action="@{/login}" method="POST">
+
+                            <div class="mb-4">
+                                <label for="username" class="form-label fw-bold text-white">Nombre de usuario</label>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-text bg-black border-warning text-white">
+                                        <i class="bi bi-person-bounding-box"></i>
+                                    </span>
+                                    <input type="text" id="username" name="username"
+                                        class="form-control bg-black border-warning text-white fs-6 shadow-none"
+                                        placeholder="Juano13" required autofocus>
+                                </div>
+                            </div>
+
+                            <div class="mb-5">
+                                <label for="password" class="form-label fw-bold text-white">Contraseña</label>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-text bg-black border-warning text-white">
+                                        <i class="bi bi-shield-lock-fill"></i>
+                                    </span>
+                                    <input type="password" id="password" name="password"
+                                        class="form-control bg-black border-warning text-white fs-6 shadow-none"
+                                        placeholder="Contraseña" required>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-warning btn-lg w-100 py-3 fs-5 fw-bold text-dark shadow-sm">
+                                Acceder
+                            </button>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
