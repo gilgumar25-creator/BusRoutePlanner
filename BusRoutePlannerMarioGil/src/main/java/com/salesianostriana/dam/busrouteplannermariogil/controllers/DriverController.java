@@ -36,7 +36,7 @@ public DriverController(DriverService servicio) {
 	@GetMapping("/listaDrivers")
 	public String showListaBuses(Model model) {
 		
-		model.addAttribute("driversList",service.getLista());
+		model.addAttribute("driversList",service.findAll());
 		
 		return "listaDrivers";
 	
