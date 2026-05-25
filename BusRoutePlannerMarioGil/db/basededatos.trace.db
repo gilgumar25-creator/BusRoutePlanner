@@ -75,6 +75,7 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/gil.gum
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
 	... 56 more
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
 2026-05-20 10:05:47.883647+02:00 database: flush
@@ -232,3 +233,5 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/gil.gum
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
 	... 56 more
 >>>>>>> 26-fe12-editruta
+=======
+>>>>>>> Stashed changes
