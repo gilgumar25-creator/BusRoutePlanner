@@ -6,10 +6,7 @@
 	<title>Lista de Rutas</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<<<<<<< HEAD
-=======
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
->>>>>>> 26-fe12-editruta
 	<link rel="stylesheet" href="https://jsdelivr.net">
 	<script src="js/validator.js" defer></script>
 </head>
@@ -25,11 +22,7 @@
 
 				<div class="col-2 text-end">
 
-<<<<<<< HEAD
-					<a href="formRuta.html" th:href="@{/new}" class="btn btn-success btn-sm">Agregar Ruta</a>
-=======
 					<a href="formRuta.html" th:href="@{/nuevaRuta}" class="btn btn-success btn-sm">Agregar Ruta</a>
->>>>>>> 26-fe12-editruta
 				</div>
 			</div>
 		</div>
@@ -37,7 +30,6 @@
 			<div class="table-responsive">
 				<table class="table table-hover table-striped mb-0">
 					<thead class="table-secondary">
-<<<<<<< HEAD
 						<tr>
 							<th class="ps-4 col-2">Código</th>
 							<th class="text-center col-3">Origen</th>
@@ -60,57 +52,20 @@
 							<td class="ps-4 align-items-center text-center">
 								<span class="text text-center fw-bold"
 									th:text="${route.numeroMaximoBusesSimultaneos}">sin codigo</span>
+							</td>
 							<td class="text-end pe-4">
-								<div class="btn-group btn-group-sm" role="group">
-									<a th:href="@{/formRuta/editar/{id}(id=${route.codigo})}"
-										class="btn btn-outline-primary">
-										<i class="bi bi-pencil-square"></i> Editar
+								<div class="d-inline-flex gap-2">
+									<a th:href="@{/editar/{codigo}(codigo=${route.codigo})}"
+										class="btn btn-sm btn-outline-primary rounded-3 small">
+										<i class="bi bi-pencil small"></i> Editar
 									</a>
-									<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-										data-bs-target="#delete-modal" th:data-bs-id="${route.codigo}">
-										<i class="bi bi-trash"></i> Borrar
-									</button>
+									<a th:href="@{/borrar/{codigo}(codigo=${route.codigo})}"
+										class="btn btn-sm btn-outline-danger rounded-3 small">
+										<i class="bi bi-eraser small"></i> Borrar
+									</a>
 								</div>
 							</td>
-=======
-						<tr><th class="ps-4 col-2">Código</th>
-						<th class="text-center col-3">Origen</th>
-						<th class="text-center col-3">Destino</th>
-						<th class="text-center col-3">NúmeroMáximoBusesSimultáneos</th>
-						<th class="text-end pe-5 col">Acciones</th>
->>>>>>> 26-fe12-editruta
 						</tr>
-						</thead>
-						<tbody>
-							<tr th:each="route : ${routesList}">
-								<td class="ps-4 align-items-center">
-									<span class="text text-center fw-bold" th:text="${route.codigo}">sin codigo</span>
-								</td>
-								<td class="ps-4 align-items-center text-center">
-									<span class="text text-center fw-bold" th:text="${route.origen}">sin origen</span>
-								</td>
-								<td class="ps-4 align-items-center text-center">
-									<span class="text text-center fw-bold" th:text="${route.destino}">sin destino</span>
-								</td>
-								<td class="ps-4 align-items-center text-center">
-									<span class="text text-center fw-bold" th:text="${route.numeroMaximoBusesSimultaneos}">sin codigo</span>
-								<td class="text-end pe-4">
-									
-									<div class="d-inline-flex gap-2">
-						
-										<a th:href="@{/editar/{codigo}(codigo=${route.codigo})}"
-											class="btn btn-sm btn-outline-primary rounded-3 small">
-											<i class="bi bi-pencil small"></i> Editar
-										</a>
-						
-										<a th:href="@{/borrar/{codigo}(codigo=${route.codigo})}"
-											class="btn btn-sm btn-outline-danger rounded-3 small">
-											<i class="bi bi-eraser small"></i> Borrar
-										</a>
-						
-									</div>
-								</td>
-							</tr>
 					</tbody>
 				</table>
 
@@ -120,28 +75,6 @@
 	</div>
 	</div>
 	<div th:replace="~{fragments/footer :: footer}"></div>
-<<<<<<< HEAD
-	<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header bg-danger text-white">
-						<h5 class="modal-title" id="deleteModalLabel"><i
-								class="bi bi-exclamation-triangle me-2"></i>Confirmar Borrado</h5>
-						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-							aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<p class="lead">¿Está seguro de que desea eliminar esta ruta?</p>
-						<p class="text-muted small">Esta acción no se puede deshacer.</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-						<a id="confirmDeleteBtn" href="#" class="btn btn-danger">Eliminar definitivamente</a>
-					</div>
-				</div>
-			</div>
-		</div>
-=======
 
 	<!---	<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered">
@@ -164,7 +97,6 @@
 				</div>
 			</div>
 		-->
->>>>>>> 26-fe12-editruta
 </body>
 
 </html>

@@ -37,7 +37,7 @@ public class RouteController {
 	@PostMapping("/guardarRuta/submit")
 	public String submitNuevaRuta(@ModelAttribute("route") Route route) {
 		// service.save(route);
-		service.save(route);
+		service.saveRuta(route);
 
 		return "redirect:/listaRutas";
 	}
@@ -55,12 +55,9 @@ public class RouteController {
 			return "redirect:/listaRutas";
 		}
 	}
-
 	
-
-
 	@GetMapping("/borrar/{codigo}")
-	public String borrarProducto(@PathVariable("codigo") Long codigo, Model model) {
+	public String borrarRuta(@PathVariable("codigo") Long codigo, Model model) {
 
 		Optional<Route> route = service.findById(codigo);
 

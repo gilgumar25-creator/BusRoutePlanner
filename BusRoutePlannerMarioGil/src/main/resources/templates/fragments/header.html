@@ -1,30 +1,56 @@
 <header th:fragment="cabecera">
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">
-					<img th:src="@{img/Logonavbar.png}" class="rounded-pill sticky-top" style="width:200px;"
-						alt="Mi Imagen"/>
-				</a>
-				<div class="collapse navbar-collapse d-flex justify-content-end" id="mynavbar">
-					<ul class="navbar-nav ms-auto pe-5">
-						<li class="nav-item pe-4">
-							<a class="nav-link text text-white fs-5" href="javascript:void(0)">Inicio</a>
-						</li>
-						<li class="nav-item pe-4">
-							<a class="nav-link text text-white fs-5" href="javascript:void(0)">Rutas</a>
-						</li>
-						<li class="nav-item pe-4">
-							<a class="nav-link text text-white fs-5" href="javascript:void(0)">Horarios</a>
-						</li>
-						<li class="nav-item pe-4">
-							<a class="nav-link text text-white fs-5" th:href="@{/Registro}">Regístrate</a>
-						</li>
-					</ul>
-					<form class="d-flex">
-						<input class="form-control me-2" type="text" placeholder="Buscar">
-						<button class="btn btn-primary" type="button">Buscar</button>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-warning border-2 px-4 py-2 shadow-lg">
+		<div class="container-fluid px-0">
+			
+			<a class="navbar-brand me-4" th:href="@{/}">
+				<img th:src="@{/img/Logonavbar.png}" class="rounded-pill" style="width:180px;" alt="UrbanBus Logo"/>
+			</a>
+
+			<button class="navbar-toggler border-0 text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navUrbanBus" aria-controls="navUrbanBus" aria-expanded="false" aria-label="Toggle navigation">
+				<i class="bi bi-grid-3x3-gap-fill fs-2"></i>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navUrbanBus">
+				
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2 pe-4">
+					<li class="nav-item">
+						<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold" th:href="@{/}">
+							<i class="bi bi-speedometer2 text-warning fs-5"></i> Planificación
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold" th:href="@{/listaRutas}">
+							<i class="bi bi-signpost-split text-warning fs-5"></i> Rutas
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold" th:href="@{/bus/listaBuses}">
+							<i class="bi bi-truck text-warning fs-5"></i> Buses
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold" th:href="@{/drivers/listaDrivers}">
+							<i class="bi bi-people text-warning fs-5"></i> Personal
+						</a>
+					</li>
+				</ul>
+
+				<div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-3">
+					
+					<form class="d-flex position-relative align-items-center" role="search">
+						<input class="form-control bg-black bg-opacity-40 border-secondary border-opacity-25 text-white rounded-2 ps-3 pe-5 py-2 small" type="search" placeholder="Buscar..." aria-label="Search">
+						<button class="btn text-secondary position-absolute end-0 top-50 translate-middle-y me-1 border-0" type="submit">
+							<i class="bi bi-search text-warning"></i>
+						</button>
 					</form>
+					
+					<a th:href="@{/Registro}" class="btn btn-warning rounded-2 px-4 py-2 fw-bold text-dark d-flex align-items-center justify-content-center gap-2 shadow-sm">
+						<i class="bi bi-shield-lock-fill"></i> Sesión
+					</a>
+					
 				</div>
 			</div>
-		</nav>
-	</header>
+
+		</div>
+	</nav>
+</header>

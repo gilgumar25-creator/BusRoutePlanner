@@ -21,17 +21,19 @@
 				<div class="card-header bg-dark text-white py-4 border-0">
 					<div class="d-flex align-items-center justify-content-center gap-2">
 						<h2 class="h5 fw-bold mb-0 text-uppercase tracking-wider">Nuevo Autobús</h2>
-						<i class="bi bi-bus-front text-success fs-4"></i>
+						<i class="bi bi-bus-front text-success fs-4"></i>cd
 					</div>
 				</div>
 
 				<div class="card-body p-4 bg-white">
-					<form th:action="@{/guardarBus/submit}" th:object="${bus}" method="POST">
+					<form th:action="@{/bus/guardarBus/submit}" th:object="${bus}" method="POST">
+
 
 						<div class="form-floating mb-3">
-							<input type="text" inputmode="numeric" pattern="[0-9]*" id="matricula" th:field="*{matricula}"
-								class="form-control rounded-3" placeholder="Matrícula" required />
-							<label for="matricula" class="text-secondary">Número de Matrícula (Solo números)</label>
+							<input type="text" inputmode="numeric" pattern="[0-9]*" id="matricula"
+								th:field="*{matricula}" class="form-control rounded-3" placeholder="Matrícula"
+								required />
+							<label for="matricula" class="text-secondary">Matrícula (Solo números<span class="">, no modificable</span>)</label>
 						</div>
 
 						<div class="form-floating mb-4">
@@ -45,7 +47,7 @@
 								<i class="bi bi-check-circle me-2"></i>Guardar Autobús
 							</button>
 
-							<a th:href="@{/listaBuses}" class="btn btn-outline-danger py-2.5 rounded-3 ">
+							<a th:href="@{/bus/listaBuses}" class="btn btn-outline-danger py-2.5 rounded-3 ">
 								<i class="bi bi-arrow-left me-2"></i>Cancelar
 							</a>
 						</div>
@@ -61,4 +63,4 @@
 
 </body>
 
-</html>>
+</html>
