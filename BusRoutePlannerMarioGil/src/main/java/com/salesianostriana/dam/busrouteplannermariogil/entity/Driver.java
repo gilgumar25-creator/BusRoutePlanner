@@ -2,6 +2,7 @@ package com.salesianostriana.dam.busrouteplannermariogil.entity;
 
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
@@ -17,10 +18,12 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor @Entity@Builder
 public class Driver {
 
-	@Id @GeneratedValue
+	@Id 
 	private Long licencia;
 	
 	private String nombre;
+	
+	private String avatar;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_bus",

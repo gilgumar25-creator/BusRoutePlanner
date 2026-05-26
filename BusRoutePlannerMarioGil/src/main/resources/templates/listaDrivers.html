@@ -2,59 +2,110 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Lista de Buses</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-		<link rel="stylesheet" href="https://jsdelivr.net">
-		<script src="js/validator.js" defer></script>
+	<meta charset="UTF-8">
+	<title>Lista de Conductores - Urban Bus</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<script src="js/validator.js" defer></script>
 </head>
 
-<body class="bg-light">
-	<div th:replace="~{fragments/header :: cabecera}"></div> 
-    <div class="container-fluid mt-5">
-        <div class="card shadow">
-			<div class="card-header bg-dark text-white d-flex align-items-center">
-			    <div class="col-2"></div>
+<body class="bg-dark text-light" style="background-color: #12141c !important;">
 
-			    <h1 class="h4 mb-0 flex-grow-1 text-center">LISTA DE BUSES</h1>
+	<div th:replace="~{fragments/header :: cabecera}"></div>
 
-			    <div class="col-2 text-end">
-			        <button class="btn btn-success btn-sm">Añadir</button>
-			    </div>
-			</div>
-            </div>
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-hover table-striped mb-0">
-                        <thead class="table-secondary">
-                            <tr>
-                                <th class="ps-4 col-4">Licencia</th>
-                                <th class="text-center col-4">Nombre</th>
-                                <th class="text-end pe-5 col-4">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="driver : ${driversList}">
-                                <td class="ps-4 align-itself">
-                                    <span class="text text-center fw-bold" th:text="${driver.licencia}">sin licencia</span>
-                                </td>
-                                <td class="text-center align-itself" th:text="${driver.nombre}">sin nombre</td>
-                                <td class="text-end pe-4">
-                                    <button class="btn btn-sm btn-outline-primary">Editar</button>
-									<button class="btn btn-sm btn-outline-danger">Eliminar</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+	<div class="container mt-5 mb-5">
+
+		<div class="card shadow border-secondary bg-secondary bg-opacity-10 rounded-3 overflow-hidden">
+			
+			<div class="card-header bg-dark border-secondary p-3">
+				<div class="row align-items-center">
 					
-                </div>
-            </div>
-        </div>
-    </div>
+					<div class="col-4"></div>
+					
+					<div class="col-4 text-center">
+						<h1 class="h4 mb-0 fw-bold text-white">LISTA DE CONDUCTORES</h1>
+					</div>
+					
+					<div class="col-4 text-end">
+						<a th:href="@{/driver/nuevoDriver}" class="btn btn-warning text-dark fw-bold px-3 py-2 d-inline-flex align-items-center gap-2 shadow-sm">
+							<i class="bi bi-plus-lg"></i> Agregar Conductor
+						</a>
+					</div>
+					
+				</div>
+			</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+			<div class="card-body p-0">
+				<div class="table-responsive">
+					
+					<table class="table table-dark table-hover align-middle mb-0">
+						
+						<thead class="table-group-divider text-uppercase small text-warning">
+							<tr>
+								<th class="py-3 ps-4 text-center w-25 fw-bold text-warning ">Perfil</th>
+								<th class="py-3 text-start w-25 fw-bold text-warning">Nº Licencia</th>
+								<th class="py-3 text-start w-25 fw-bold text-warning">Nombre Operador</th>
+								<th class="py-3 text-end pe-4 w-25 fw-bold text-warning">Acciones</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							
+							<tr th:if="${#lists.isEmpty(driversList)}">
+								<td colspan="4" class="text-center py-5 text-muted">
+									<i class="bi bi-person-x d-block mb-2 text-warning fs-1"></i>
+									<span class="fw-bold d-block text-white">No hay conductores registrados</span>
+									<small class="text-secondary">Crea un nuevo conductor para rellenar la plantilla.</small>
+								</td>
+							</tr>
+							
+							<tr th:each="driver : ${driversList}">
+								
+								<td class="py-3 ps-4 text-center">
+									<div class="d-inline-flex align-items-center justify-content-center bg-dark rounded-circle border border-secondary shadow-sm" style="width: 48px; height: 48px; overflow: hidden;">
+										<img th:if="${driver.avatar != null and !#strings.isEmpty(driver.avatar)}" 
+											 th:src="${driver.avatar}" 
+											 class="w-100 h-100 object-fit-cover"
+											 alt="AVT">
+										<i th:if="${driver.avatar == null or #strings.isEmpty(driver.avatar)}" 
+										   class="bi bi-person-fill text-secondary fs-4"></i>
+									</div>
+								</td>
+
+								<td class="py-3 text-start">
+									<span class="badge bg-dark text-warning border border-secondary px-3 py-2 rounded-2 font-monospace fs-6" th:text="${driver.licencia}">
+										000000
+									</span>
+								</td>
+
+								<td class="py-3 text-start">
+									<div class=" ps-3 fw-bold text-white fs-5" th:text="${driver.nombre}">Nombre y Apellidos</div>
+								</td>
+
+								<td class="py-3 text-end pe-4">
+									<div class="d-inline-flex gap-2">
+										<a th:href="@{/driver/editar/{licencia}(licencia=${driver.licencia})}"
+										   class="btn btn-sm btn-outline-warning d-inline-flex align-items-center gap-1 rounded-2" 
+										   title="Editar perfil">
+											<i class="bi bi-pencil"></i> <span class="d-none d-md-inline">Editar</span>
+										</a>
+						
+										<a th:href="@{/driver/borrar/{licencia}(licencia=${driver.licencia})}" class="btn btn-sm btn-outline-danger rounded-3 small">
+											<i class="bi bi-eraser small"></i> Borrar
+										</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
+
 </body>
-
 </html>
