@@ -2,8 +2,12 @@ package com.salesianostriana.dam.busrouteplannermariogil.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -63,4 +67,43 @@ public class SecurityConfig {
 
         return http.build();
     }
+    
+    public boolean isAdmin() {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+
+		return isAuthenticated()
+
+				&& authentication.getAuthorities().stream()
+
+						.map(GrantedAuthority::getAuthority)
+
+						.anyMatch("ROLE_ADMIN"::equals);
+
+	}
+
+
+	public boolean isAuthenticated() {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+
+		return authentication != null
+
+				&& authentication.isAuthenticated()
+
+				&& !(authentication instanceof AnonymousAuthenticationToken);
+
+	}
+
+
+	public String getUsername() {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+
+		return isAuthenticated() ? authentication.getName() : "";
+
+	}
 }

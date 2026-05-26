@@ -30,18 +30,10 @@ public class DriverController {
 
 
 	@GetMapping("/listaDrivers")
-<<<<<<< HEAD
-	public String showListaBuses(Model model) {
-		
-		model.addAttribute("driversList",service.findAll());
-		
-=======
-
 	public String listarDrivers(Model model) {
 
 		model.addAttribute("driversList", service.findAll());
 
->>>>>>> main
 		return "listaDrivers";
 
 	}

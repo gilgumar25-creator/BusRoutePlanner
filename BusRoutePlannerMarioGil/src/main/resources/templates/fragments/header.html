@@ -44,9 +44,30 @@
 						</button>
 					</form>
 					
-					<a th:href="@{/Registro}" class="btn btn-warning rounded-2 px-4 py-2 fw-bold text-dark d-flex align-items-center justify-content-center gap-2 shadow-sm">
-						<i class="bi bi-shield-lock-fill"></i> Sesión
-					</a>
+					<div class="dropdown">
+						<button class="btn btn-warning dropdown-toggle rounded-2 px-4 py-2 fw-bold text-dark d-flex align-items-center justify-content-center gap-2 shadow-sm w-100" 
+								type="button" 
+								id="userSessionDropdown" 
+								data-bs-toggle="dropdown" 
+								aria-expanded="false">
+							<i class="bi bi-shield-lock-fill"></i>
+							<span th:text="${@securityConfig.getUsername() != '' ? @securityConfig.getUsername() : 'Sesión'}">Sesión</span>
+						</button>
+						
+						<ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow border-warning mt-2" aria-labelledby="userSessionDropdown">
+							<li>
+								<a class="dropdown-item small d-flex align-items-center gap-2" th:href="@{/login}">
+									<i class="bi bi-arrow-left-right text-info"></i> Cambiar cuenta
+								</a>
+							</li>
+							<li><hr class="dropdown-divider border-secondary"></li>
+							<li>
+								<a class="dropdown-item small text-danger d-flex align-items-center gap-2" th:href="@{/login?logout}" method="POST">
+									<i class="bi bi-box-arrow-right"></i> Cerrar sesión
+								</a>
+							</li>
+						</ul>
+					</div>
 					
 				</div>
 			</div>
