@@ -2,17 +2,12 @@ package com.salesianostriana.dam.busrouteplannermariogil.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-<<<<<<< HEAD
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-=======
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
->>>>>>> develop
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -72,9 +67,7 @@ public class SecurityConfig {
 
         return http.build();
     }
-<<<<<<< HEAD
-=======
-    
+
     public boolean isAdmin() {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -113,5 +106,4 @@ public class SecurityConfig {
 		return isAuthenticated() ? authentication.getName() : "";
 
 	}
->>>>>>> develop
 }

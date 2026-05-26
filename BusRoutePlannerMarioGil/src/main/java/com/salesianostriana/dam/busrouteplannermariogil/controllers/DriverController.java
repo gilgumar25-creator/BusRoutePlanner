@@ -30,10 +30,6 @@ public class DriverController {
 
 
 	@GetMapping("/listaDrivers")
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
 	public String listarDrivers(Model model) {
 
 		model.addAttribute("driversList", service.findAll());
