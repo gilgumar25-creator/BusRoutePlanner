@@ -2,6 +2,8 @@ package com.salesianostriana.dam.busrouteplannermariogil.entity;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,7 +26,8 @@ public class PlanificacionRuta {
     @Id
     @GeneratedValue
     private Long codigo;
-
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate diaSemana;
 
     @Enumerated(EnumType.STRING)

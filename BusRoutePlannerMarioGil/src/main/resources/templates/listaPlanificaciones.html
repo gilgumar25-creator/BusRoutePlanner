@@ -1,116 +1,137 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Listado de Planificaciones - Urban Bus</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="js/validator.js" defer></script>
+	<meta charset="UTF-8">
+	<title>Listado de Planificaciones - Urban Bus</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<script src="js/validator.js" defer></script>
 </head>
+
 <body class="bg-dark text-light">
 
-    <div th:replace="~{fragments/header :: cabecera}"></div>
+	<div th:replace="~{fragments/header :: cabecera}"></div>
 
-    <div class="container mt-5 mb-5">
+	<div class="container mt-5 mb-5">
 
-        <div class="card shadow border-secondary bg-secondary bg-opacity-10 rounded-3 overflow-hidden">
-            
-            <div class="card-header bg-dark border-secondary p-3">
-                <div class="row align-items-center">
-                    
-                    <div class="col-4"></div>
-                    
-                    <div class="col-4 text-center">
-                        <h1 class="h4 mb-0 fw-bold text-white text-uppercase">Historial de Turnos</h1>
-                    </div>
-                    
-                    <div class="col-4 text-end">
-                        <a th:href="@{/planificacionRuta/nuevaPlanificacionRuta}" class="btn btn-warning text-dark fw-bold px-3 py-2 d-inline-flex align-items-center gap-2 shadow-sm">
-                            <i class="bi bi-plus-lg"></i> Nueva Planificación
-                        </a>
-                    </div>
-                    
-                </div>
-            </div>
+		<div class="card shadow border-secondary bg-secondary bg-opacity-10 rounded-3 overflow-hidden">
 
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    
-                    <table class="table table-dark table-hover align-middle mb-0">
-                        
-                        <thead class="table-group-divider text-uppercase small text-warning">
-                            <tr>
-                                <th class="py-3 ps-4 text-start fw-bold text-warning">Código</th>
-                                <th class="py-3 ps-4 text-start fw-bold text-warning">Fecha</th>
-                                <th class="py-3 text-center fw-bold text-warning">Horario</th>
-                                <th class="py-3 text-center fw-bold text-warning">Ruta Asignada</th>
-                                <th class="py-3 text-start fw-bold text-warning">Autobús</th>
-                                <th class="py-3 text-start fw-bold text-warning">Conductor</th>
-                                <th class="py-3 text-end pe-4 fw-bold text-warning">Acciones</th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                            
-                            <tr th:if="${#lists.isEmpty(planificaciones)}">
-                                <td colspan="7" class="text-center py-5 text-muted">
-                                    <i class="bi bi-map d-block mb-2 text-warning fs-1"></i>
-                                    <span class="fw-bold d-block text-white">No hay ninguna ruta planificada aún</span>
-                                    <small class="text-secondary">Crea una nueva planificación para rellenar la plantilla.</small>
-                                </td>
-                            </tr>
-                            
-                            <tr th:each="p : ${planificaciones}">
-                                
-                                <td class="py-3 ps-4 text-start">
-                                    <span class="badge bg-dark text-warning border border-secondary px-3 py-2 rounded-2 font-monospace fs-6" th:text="${p.codigo}">
-                                        1
-                                    </span>
-                                </td>
+			<div class="card-header bg-dark border-secondary p-3">
+				<div class="row align-items-center">
 
-                                <td class="py-3 text-start">
-                                    <div class="text-white font-monospace" th:text="${p.diaSemana}">2026-05-27</div>
-                                </td>
+					<div class="col-4"></div>
 
-                                <td class="py-3 text-center">
-                                    <span th:text="${p.horario}" 
-                                          th:classappend="${p.horario.name() == 'MANANA'} ? 'border-info text-info' : 'border-warning text-warning'"
-                                          class="badge bg-dark  border px-3 py-2 rounded-pill  text-uppercase">
-                                        MANANA
-                                    </span>
-                                </td>
+					<div class="col-4 text-center">
+						<h1 class="h4 mb-0 fw-bold text-white text-uppercase">Historial de Turnos</h1>
+					</div>
 
-                                <td class="py-3 text-start">
-                                    <div class="fw-bold text-white fs-6 text-center" th:text="${p.route != null} ? ${p.route.origen + ' ➔ ' + p.route.destino} : 'Sin Ruta'">
-                                        Sevilla ➔ Cádiz
-                                    </div>
-                                </td>
+					<div class="col-4 text-end">
+						<a th:href="@{/planificacionRuta/nuevaPlanificacionRuta}"
+							class="btn btn-warning text-dark fw-bold px-3 py-2 d-inline-flex align-items-center gap-2 shadow-sm">
+							<i class="bi bi-plus-lg"></i> Nueva Planificación
+						</a>
+					</div>
 
-                                <td class="py-3 text-start">
-                                    <div class="text-light" th:text="${p.bus != null} ? ${p.bus.matricula} : 'Sin Bus'">
-                                        1234567
-                                    </div>
-                                </td>
+				</div>
+			</div>
 
-                                <td class="py-3 text-start">
-                                    <div class="text-light" th:text="${p.driver != null} ? ${p.driver.nombre} : 'Sin Conductor'">
-                                        Manuel
-                                    </div>
-                                </td>
+			<div class="card-body p-0">
+				<div class="table-responsive">
 
-                                
+					<table class="table table-dark table-hover align-middle mb-0">
 
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
+						<thead class="table-group-divider text-uppercase small text-warning">
+							<tr>
+								<th class="py-3 ps-4 text-start fw-bold text-warning">Código</th>
+								<th class="py-3 ps-4 text-start fw-bold text-warning">Fecha</th>
+								<th class="py-3 text-center fw-bold text-warning">Horario</th>
+								<th class="py-3 text-center fw-bold text-warning">Ruta Asignada</th>
+								<th class="py-3 text-start fw-bold text-warning">Autobús</th>
+								<th class="py-3 text-start fw-bold text-warning">Conductor</th>
+								<th class="py-3 text-end pe-4 fw-bold text-warning">Acciones</th>
+							</tr>
+						</thead>
 
-    <div th:replace="~{fragments/footer :: footer}"></div>
+						<tbody>
+
+							<tr th:if="${#lists.isEmpty(planificaciones)}">
+								<td colspan="7" class="text-center py-5 text-muted">
+									<i class="bi bi-map d-block mb-2 text-warning fs-1"></i>
+									<span class="fw-bold d-block text-white">No hay ninguna ruta planificada aún</span>
+									<small class="text-secondary">Crea una nueva planificación para rellenar la
+										plantilla.</small>
+								</td>
+							</tr>
+
+							<tr th:each="p : ${planificaciones}">
+
+								<td class="py-3 ps-4 text-start">
+									<span
+										class="badge bg-dark text-warning border border-secondary px-3 py-2 rounded-2 font-monospace fs-6"
+										th:text="${p.codigo}">
+										1
+									</span>
+								</td>
+
+								<td class="py-3 text-start">
+									<div class="text-white font-monospace" th:text="${p.diaSemana}">2026-05-27</div>
+								</td>
+
+								<td class="py-3 text-center">
+									<span th:text="${p.horario}"
+										th:classappend="${p.horario.name() == 'MANANA'} ? 'border-info text-info' : 'border-warning text-warning'"
+										class="badge bg-dark  border px-3 py-2 rounded-pill  text-uppercase">
+										MANANA
+									</span>
+								</td>
+
+								<td class="py-3 text-start">
+									<div class="fw-bold text-white fs-6 text-center"
+										th:text="${p.route != null} ? ${p.route.origen + ' ➔ ' + p.route.destino} : 'Sin Ruta'">
+										Sevilla ➔ Cádiz
+									</div>
+								</td>
+
+								<td class="py-3 text-start">
+									<div class="text-light" th:text="${p.bus != null} ? ${p.bus.matricula} : 'Sin Bus'">
+										1234567
+									</div>
+								</td>
+
+								<td class="py-3 text-start">
+									<div class="text-light"
+										th:text="${p.driver != null} ? ${p.driver.nombre} : 'Sin Conductor'">
+										Manuel
+									</div>
+								</td>
+
+								<td class="text-center">
+
+									<div class="btn-group btn-group-sm" role="group">
+
+										<a th:href="@{/planificacionRuta/editar/{id}(id=${p.codigo})}"
+											class="btn btn-warning">Editar</a>
+
+
+									</div>
+
+								</td>
+
+
+
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
+
 </html>
