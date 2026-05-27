@@ -51,5 +51,21 @@ package com.salesianostriana.dam.busrouteplannermariogil.controllers;
 	        prservicio.save(planificacion);
 	        return "redirect:/planificacionRuta";
 	    }
+	    
+	    @GetMapping("/editar/{id}")
+	    public String editarPlanificacionRuta(@PathVariable("id") Long id, Model model) {
+	        Optional<PlanificacionRuta> pr = prservicio.findById(id);
+	       
+	        if (pr.isPresent()) {
+	            model.addAttribute("planificacion", pr.get());
+	            model.addAttribute("rutas", routeservice.findAll());
+	            model.addAttribute("buses", busservice.findAll());
+	            model.addAttribute("conductores", driverservice.findAll());
+	            return "formPlanificacionRuta";
+	           
+	        }
+	       
+	        return "redirect:/planificacionRuta";
+	    }
 
 	}
