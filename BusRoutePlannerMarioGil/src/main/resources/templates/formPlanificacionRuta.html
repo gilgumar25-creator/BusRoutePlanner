@@ -24,7 +24,6 @@
 
                     <div class="card-body p-4">
                         <form th:action="@{/planificacionRuta/guardarPlanificacionRuta}" th:object="${planificacion}" method="post">
-
                             <input type="hidden" th:field="*{codigo}" />
 
                             <div class="row">
@@ -47,7 +46,7 @@
                             <div class="mb-4">
                                 <label for="route" class="form-label fw-bold">ASIGNAR RUTA</label>
                                 <select id="route" class="form-select" th:field="*{route.codigo}" required>
-                                    <option value="" hidden>Selecciona una ruta operativa...</option>
+                                    <option value="" hidden>Selecciona ruta...</option>
                                     <option th:each="r : ${rutas}" 
                                             th:value="${r.codigo}" 
                                             th:text="${r.codigo + ' (' + r.origen + ' ➔ ' + r.destino + ')'}">
@@ -59,7 +58,7 @@
                                 <div class="col-md-6 mb-4">
                                     <label for="bus" class="form-label fw-bold">ASIGNAR BUS</label>
                                     <select id="bus" class="form-select" th:field="*{bus.matricula}" required>
-                                        <option value="" hidden>Selecciona Bus...</option>
+                                        <option value="" hidden>Selecciona bus...</option>
                                         <option th:each="b : ${buses}" 
                                                 th:value="${b.matricula}" 
                                                 th:text="${b.matricula + ' (' + b.capacidad + ' plazas)'}">
@@ -70,7 +69,7 @@
                                 <div class="col-md-6 mb-4">
                                     <label for="driver" class="form-label fw-bold">ASIGNAR CONDUCTOR</label>
                                     <select id="driver" class="form-select" th:field="*{driver.licencia}" required>
-                                        <option value="" hidden>Selecciona Personal...</option>
+                                        <option value="" hidden>Selecciona conductor...</option>
                                         <option th:each="d : ${conductores}" 
                                                 th:value="${d.licencia}" 
                                                 th:text="${d.nombre}">

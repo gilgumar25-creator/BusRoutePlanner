@@ -67,5 +67,11 @@ package com.salesianostriana.dam.busrouteplannermariogil.controllers;
 	       
 	        return "redirect:/planificacionRuta";
 	    }
+	    
+	    @GetMapping("/borrar/{id}")
+	    public String borrarPlanificacionRuta(@PathVariable("id") Long id) {
+	        prservicio.deleteById(id);
+	        return "redirect:/planificacionRuta";
+	    }
 
 	}
