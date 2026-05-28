@@ -1,32 +1,22 @@
 package com.salesianostriana.dam.busrouteplannermariogil.service;
 
+
 import java.util.List;
 
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.stereotype.Service;
+import com.salesianostriana.dam.busrouteplannermariogil.entity.Usuario;
+import com.salesianostriana.dam.busrouteplannermariogil.repositories.UsuarioRepository;
+import com.salesianostriana.dam.busrouteplannermariogil.servicebase.BaseServiceImplem;
 
-public class UsuarioService {
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Service
+public class UsuarioService extends BaseServiceImplem<Usuario, String, UsuarioRepository>{
 	
-	private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
+	
 
-    public UsuarioService(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
-        this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
-    }
-    
-    public List<String> findAll() {
-        return List.of("admin", "operador");
-    }
-
-    // 2. CREAR / GUARDAR UN USUARIO
-    public void save(String username, String password, String rol) {
-        UserDetails nuevoUsuario = User.builder()
-                .username(username)
-                .password("{noop}" + password)
-                .roles(rol)
-                .build();
-        
-        inMemoryUserDetailsManager.createUser(nuevoUsuario);
-    }
+	
+	
 
 }

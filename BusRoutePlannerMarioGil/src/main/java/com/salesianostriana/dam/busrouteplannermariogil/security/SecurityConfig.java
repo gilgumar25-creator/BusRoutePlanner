@@ -38,6 +38,12 @@ public class SecurityConfig {
                 .password("{noop}operador")
                 .roles("OPERADOR")
                 .build();
+        
+       /* UserDetails newUser = User.builder()
+        		.username(getUsername())
+        		.password(null)
+        		.roles(null)
+        		.build();*/
 
         return new InMemoryUserDetailsManager(admin, operador);
     }
@@ -48,11 +54,13 @@ public class SecurityConfig {
 
         http
             .authorizeHttpRequests(authz -> authz
+            	.requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/error").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/operador/**").hasRole("OPERADOR")
                 .anyRequest().authenticated()
             )
+            .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
             .requestCache(cache -> cache.requestCache(requestCache))
             .formLogin(loginz -> loginz
                 .loginPage("/login")
