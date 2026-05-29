@@ -19,7 +19,7 @@ public class Operador extends Usuario{
 	private boolean activo;
 
 	public Operador(Integer id, String nombre, String password, Rol rol,boolean activo) {
-		super();
+		super(id, nombre, password, rol);
 		this.activo = activo;
 	}
 	

@@ -8,9 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.NullRequestCache;
@@ -40,6 +37,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
             .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
+            .headers(headers -> headers.frameOptions(frames -> frames.disable()))
             .requestCache(cache -> cache.requestCache(requestCache))
             .formLogin(loginz -> loginz
                 .loginPage("/login")
