@@ -23,36 +23,15 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig {
 
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
-
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password("{noop}admin")
-                .roles("ADMIN", "OPERADOR")
-                .build();
-        
-        UserDetails operador = User.builder()
-                .username("operador")
-                .password("{noop}operador")
-                .roles("OPERADOR")
-                .build();
-        
-       /* UserDetails newUser = User.builder()
-        		.username(getUsername())
-        		.password(null)
-        		.roles(null)
-        		.build();*/
-
-        return new InMemoryUserDetailsManager(admin, operador);
-    }
+    private final CustomUserDetailsService customUserDetailsService;
+ 
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         RequestCache requestCache = new NullRequestCache();
 
         http
+        	.userDetailsService(customUserDetailsService)
             .authorizeHttpRequests(authz -> authz
             	.requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/error").permitAll()

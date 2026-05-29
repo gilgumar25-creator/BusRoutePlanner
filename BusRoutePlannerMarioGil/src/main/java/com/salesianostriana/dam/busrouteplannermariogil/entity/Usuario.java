@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Entity @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario {
 	
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Integer id;
 	
 	private String nombre;

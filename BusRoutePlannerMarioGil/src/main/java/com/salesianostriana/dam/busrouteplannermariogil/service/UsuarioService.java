@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service
-public class UsuarioService extends BaseServiceImplem<Usuario, String, UsuarioRepository>{
+public class UsuarioService extends BaseServiceImplem<Usuario, Integer, UsuarioRepository>{
 	
 	
 
