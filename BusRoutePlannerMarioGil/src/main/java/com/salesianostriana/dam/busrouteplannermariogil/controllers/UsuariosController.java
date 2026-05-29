@@ -39,7 +39,7 @@ public class UsuariosController {
 	    return "admin/formUsuario"; 
 	}
 
-	@PostMapping("/guardarUsuario")
+	/*@PostMapping("/guardarUsuario")
 	public String guardarUser(
 	@RequestParam("nombre") String nombre,
     @RequestParam("password") String password,
@@ -66,6 +66,95 @@ public class UsuariosController {
 		
 		return "redirect:/admin/listaUsuarios";
 
-    }
+    }*/
 	
-}
+	@PostMapping("/guardarUsuario")
+	public String guardarUsuario(
+	    @RequestParam(value = "id", required = false) Integer id, 
+	    @RequestParam("nombre") String nombre,
+	    @RequestParam("password") String password,
+	    @RequestParam("rol") String rolStr,
+	    @RequestParam(value = "activo", required = false) Boolean activo, // Captura el estado del operador
+	    @RequestParam(value = "fechaNombramiento", required = false) String fecha) { // Captura la fecha del admin
+
+	    Usuario usuarioAGuardar;
+	    Rol rol = Rol.valueOf(rolStr); 
+
+	    // 1. ¿ES UNA EDICIÓN? 
+	    if (id != null) {
+	        // Buscamos el usuario real que ya está en la base de datos con su herencia intacta
+	        usuarioAGuardar = servicio.findById(id).orElse(null);
+	        
+	        // Modificamos los datos específicos según el tipo real del objeto
+	        if (usuarioAGuardar instanceof Admin admin) {
+	            if (fecha != null && !fecha.isEmpty()) {
+	                admin.setFechaNombramiento(LocalDate.parse(fecha));
+	            }
+	        } else if (usuarioAGuardar instanceof Operador operador) {
+	            if (activo != null) {
+	                operador.setActivo(activo);
+	            }
+	        }
+	    } 
+	    // 2. ¿ES UN USUARIO NUEVO?
+	    else {
+	        if (rol == Rol.ADMIN) {
+	            Admin admin = new Admin();
+	            admin.setFechaNombramiento(LocalDate.now()); 
+	            usuarioAGuardar = admin;
+	        } else {
+	            Operador operador = new Operador();
+	            operador.setActivo(true); 
+	            usuarioAGuardar = operador;
+	        }
+	    }
+
+	    // 3. Modificamos los datos comunes para ambos casos (Nuevo y Editado)
+	    usuarioAGuardar.setNombre(nombre);
+	    
+	    // Evitamos volver a ponerle {noop} si la contraseña ya lo traía de antes
+	    if (password.startsWith("{noop}")) {
+	        usuarioAGuardar.setPassword(password);
+	    } else {
+	        usuarioAGuardar.setPassword("{noop}" + password);
+	    }
+	    
+	    usuarioAGuardar.setRol(rol);
+	    
+	    // 4. Guardamos. Al venir de la base de datos (en caso de edición), Hibernate hará un UPDATE automático
+	    servicio.save(usuarioAGuardar);
+	    
+	    return "redirect:/admin/listaUsuarios";
+	}
+	
+	@GetMapping("/editarUsuario/{id}")
+	public String editarUsuario(@PathVariable("id") Integer id, Model model) {
+	   
+	    Usuario usuario = servicio.findById(id).orElse(null); 
+	    
+	    if (usuario == null) {
+	        return "redirect:/admin/listaUsuarios?error=notfound";
+	    }
+
+	   
+	    model.addAttribute("usuario", usuario);
+
+	    
+	    if (usuario.getRol() == Rol.ADMIN) {
+	      
+	        return "admin/formAdmin"; 
+	    } else {
+	        return "admin/formOperador";
+	    }
+	    
+	}
+	
+	@GetMapping("/borrarUsuario/{id}")
+	public String borrarUsuario(@PathVariable("id") Integer id, Model model) {
+		servicio.deleteById(id);
+		return "redirect:/admin/listaUsuarios";
+		}
+	
+	
+	
+	}

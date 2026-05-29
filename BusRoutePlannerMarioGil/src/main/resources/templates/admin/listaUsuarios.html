@@ -40,17 +40,18 @@
 						<thead class="table-group-divider text-uppercase small text-warning">
 							<tr>
 								<th class="py-3 ps-4 fw-bold text-warning col-1">ID</th>
-								<th class="py-3 text-start fw-bold text-warning col-3">Nombre de Usuario</th>
-								<th class="py-3 text-center fw-bold text-warning col-3">Rol del Sistema</th>
+								<th class="py-3 text-start fw-bold text-warning col-2">Nombre de Usuario</th>
+								<th class="py-3 text-center fw-bold text-warning col-2">Rol del Sistema</th>
 								<th class="py-3 text-center fw-bold text-warning col-3">Detalles del Cargo</th>
-								<th class="py-3 text-end pe-4 fw-bold text-warning col-2">Contraseña</th>
+								<th class="py-3 text-center fw-bold text-warning col-2">Contraseña</th>
+								<th class="py-3 text-end pe-4 fw-bold text-warning col-2">Acciones</th>
 							</tr>
 						</thead>
 
 						<tbody>
 
 							<tr th:if="${#lists.isEmpty(userList)}">
-								<td colspan="5" class="text-center py-5 text-muted">
+								<td colspan="6" class="text-center py-5 text-muted">
 									<i class="bi bi-person-x d-block mb-2 text-warning fs-1"></i>
 									<span class="fw-bold d-block text-white">No hay usuarios registrados</span>
 								</td>
@@ -109,12 +110,28 @@
 									</div>
 								</td>
 
-								<td class="py-3 text-end pe-4">
+								<td class="py-3 text-center">
 									<span
 										class="badge bg-dark text-warning border border-warning px-3 py-2 rounded-2 fs-6 font-monospace"
-										th:text="${usuario.password}">
+										th:text="${usuario.password != null ? #strings.replace(usuario.password, '{noop}', '') : ''}">
 										Mario
 									</span>
+								</td>
+
+								<td class="py-3 text-end pe-4">
+									<div class="d-inline-flex gap-2">
+										<a th:href="@{/admin/editarUsuario/{id}(id=${usuario.id})}"
+										   class="btn btn-sm btn-outline-warning d-inline-flex align-items-center gap-1 rounded-2" 
+										   title="Editar usuario">
+											<i class="bi bi-pencil"></i> <span class="d-none d-md-inline">Editar</span>
+										</a>
+						
+										<a th:href="@{/admin/borrarUsuario/{id}(id=${usuario.id})}" 
+										   class="btn btn-sm btn-outline-danger rounded-3 small"
+										   onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
+											<i class="bi bi-eraser small"></i> Borrar
+										</a>
+									</div>
 								</td>
 
 							</tr>
