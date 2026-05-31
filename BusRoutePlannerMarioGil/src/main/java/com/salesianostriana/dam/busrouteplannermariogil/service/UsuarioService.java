@@ -15,6 +15,8 @@ import lombok.AllArgsConstructor;
 public class UsuarioService extends BaseServiceImplem<Usuario, Integer, UsuarioRepository>{
 	
 	
+	
+	
 
 	
 	

@@ -35,4 +35,6 @@ public class DataInitializer implements CommandLineRunner {
             usuarioRepository.save(operador);
         }
     }
+    
+    
 }

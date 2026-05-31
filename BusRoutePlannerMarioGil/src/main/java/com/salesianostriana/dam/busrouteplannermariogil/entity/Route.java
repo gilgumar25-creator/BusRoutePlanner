@@ -27,19 +27,31 @@ public class Route {
 	private String origen;
 
 	private String destino;
+	
+	private double distancia;
+	
+	private double preciokilometro;
+	
+	private double precioViaje;
 
 	// @Min(value = 1, message = "El nºmáximo de buses simultáneos tiene que ser
 	// mínimo 1")
 	private int numeroMaximoBusesSimultaneos;
 
-	public Route(Long codigo, String origen, String destino, int numeroMaximoBusesSimultaneos) {
+	
+	public Route(Long codigo, String origen, String destino, double distancia, double preciokilometro,
+			double precioViaje, int numeroMaximoBusesSimultaneos) {
 		super();
 		this.codigo = codigo;
 		this.origen = origen;
 		this.destino = destino;
+		this.distancia = distancia;
+		this.preciokilometro = preciokilometro;
+		this.precioViaje = precioViaje;
 		this.numeroMaximoBusesSimultaneos = numeroMaximoBusesSimultaneos;
 	}
-	
+
+
 	@OneToMany(mappedBy = "route", fetch = FetchType.EAGER)
 	@ToString.Exclude
 	@Builder.Default

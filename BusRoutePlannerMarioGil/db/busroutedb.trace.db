@@ -1,5 +1,0 @@
-2026-05-29 11:40:54.964057+02:00 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "Select *\000d\000a[*]10from usuario"
-Syntax error in SQL statement "Select *\000d\000a[*]10from usuario"; SQL statement:
-Select *
-10from usuario [42000-240]

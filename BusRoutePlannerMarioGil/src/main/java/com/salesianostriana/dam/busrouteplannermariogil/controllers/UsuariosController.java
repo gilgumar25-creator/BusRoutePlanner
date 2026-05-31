@@ -34,8 +34,7 @@ public class UsuariosController {
 
 	}
 	@GetMapping("/nuevoUsuario")
-	public String nuevoUser() {
-	    // Aquí solo devuelves el nombre de tu archivo HTML del formulario
+	public String nuevoUsuario() {
 	    return "admin/formUsuario"; 
 	}
 
@@ -77,52 +76,44 @@ public class UsuariosController {
 	    @RequestParam(value = "activo", required = false) Boolean activo, // Captura el estado del operador
 	    @RequestParam(value = "fechaNombramiento", required = false) String fecha) { // Captura la fecha del admin
 
-	    Usuario usuarioAGuardar;
+	    Usuario usuario;
 	    Rol rol = Rol.valueOf(rolStr); 
 
-	    // 1. ¿ES UNA EDICIÓN? 
 	    if (id != null) {
-	        // Buscamos el usuario real que ya está en la base de datos con su herencia intacta
-	        usuarioAGuardar = servicio.findById(id).orElse(null);
-	        
-	        // Modificamos los datos específicos según el tipo real del objeto
-	        if (usuarioAGuardar instanceof Admin admin) {
+	        usuario = servicio.findById(id).orElse(null);
+	        if (usuario instanceof Admin admin) {
 	            if (fecha != null && !fecha.isEmpty()) {
 	                admin.setFechaNombramiento(LocalDate.parse(fecha));
 	            }
-	        } else if (usuarioAGuardar instanceof Operador operador) {
+	        } else if (usuario instanceof Operador operador) {
 	            if (activo != null) {
 	                operador.setActivo(activo);
 	            }
 	        }
 	    } 
-	    // 2. ¿ES UN USUARIO NUEVO?
 	    else {
 	        if (rol == Rol.ADMIN) {
 	            Admin admin = new Admin();
 	            admin.setFechaNombramiento(LocalDate.now()); 
-	            usuarioAGuardar = admin;
+	            usuario = admin;
 	        } else {
 	            Operador operador = new Operador();
 	            operador.setActivo(true); 
-	            usuarioAGuardar = operador;
+	            usuario = operador;
 	        }
 	    }
 
-	    // 3. Modificamos los datos comunes para ambos casos (Nuevo y Editado)
-	    usuarioAGuardar.setNombre(nombre);
+	    usuario.setNombre(nombre);
 	    
-	    // Evitamos volver a ponerle {noop} si la contraseña ya lo traía de antes
 	    if (password.startsWith("{noop}")) {
-	        usuarioAGuardar.setPassword(password);
+	        usuario.setPassword(password);
 	    } else {
-	        usuarioAGuardar.setPassword("{noop}" + password);
+	        usuario.setPassword("{noop}" + password);
 	    }
 	    
-	    usuarioAGuardar.setRol(rol);
+	    usuario.setRol(rol);
 	    
-	    // 4. Guardamos. Al venir de la base de datos (en caso de edición), Hibernate hará un UPDATE automático
-	    servicio.save(usuarioAGuardar);
+	    servicio.save(usuario);
 	    
 	    return "redirect:/admin/listaUsuarios";
 	}

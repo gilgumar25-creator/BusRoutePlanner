@@ -48,6 +48,7 @@
 								<th class="py-3 ps-4 text-start fw-bold text-warning">Fecha</th>
 								<th class="py-3 text-center fw-bold text-warning">Horario</th>
 								<th class="py-3 text-center fw-bold text-warning">Ruta Asignada</th>
+								<th class="py-3 text-center fw-bold text-warning pe-4">Precio</th>
 								<th class="py-3 text-start fw-bold text-warning">Autobús</th>
 								<th class="py-3 text-start fw-bold text-warning">Conductor</th>
 								<th class="py-3 text-center pe-4 fw-bold text-warning">Acciones</th>
@@ -57,7 +58,7 @@
 						<tbody>
 
 							<tr th:if="${#lists.isEmpty(planificaciones)}">
-								<td colspan="7" class="text-center py-5 text-muted">
+								<td colspan="8" class="text-center py-5 text-muted">
 									<i class="bi bi-map d-block mb-2 text-warning fs-1"></i>
 									<span class="fw-bold d-block text-white">No hay ninguna ruta planificada aún</span>
 								</td>
@@ -96,6 +97,13 @@
 									</div>
 								</td>
 
+								<td class="py-3 text-center">
+									<div class="text-warning fw-bold pe-4"
+										th:text="${p.route != null} ? ${p.route.precioViaje + ' €'} : '-'">
+										0.00 €
+									</div>
+								</td>
+
 								<td class="py-3 text-start">
 									<div class="text-light" th:text="${p.bus != null} ? ${p.bus.matricula} : 'Sin Bus'">
 										1234567
@@ -122,8 +130,6 @@
 										</a>
 									</div>
 								</td>
-
-
 
 							</tr>
 						</tbody>

@@ -46,6 +46,9 @@
 								<th class="py-3 ps-4 text-start fw-bold text-warning">Código</th>
 								<th class="py-3 text-start fw-bold text-warning">Origen</th>
 								<th class="py-3 text-start fw-bold text-warning">Destino</th>
+								<th class="py-3 text-center fw-bold text-warning">Distancia</th>
+								<th class="py-3 text-center fw-bold text-warning">Precio KM</th>
+								<th class="py-3 text-center fw-bold text-warning">Precio Viaje</th>
 								<th class="py-3 text-center fw-bold text-warning">Buses Máx.</th>
 								<th class="py-3 text-end pe-4 fw-bold text-warning">Acciones</th>
 							</tr>
@@ -54,7 +57,7 @@
 						<tbody>
 							
 							<tr th:if="${#lists.isEmpty(routesList)}">
-								<td colspan="5" class="text-center py-5 text-muted">
+								<td colspan="8" class="text-center py-5 text-muted">
 									<i class="bi bi-map d-block mb-2 text-warning fs-1"></i>
 									<span class="fw-bold d-block text-white">No hay rutas registradas</span>
 									<small class="text-secondary">Crea una nueva ruta para rellenar la plantilla.</small>
@@ -75,6 +78,18 @@
 
 								<td class="py-3 text-start">
 									<div class="fw-bold text-white fs-5" th:text="${route.destino}">Destino</div>
+								</td>
+
+								<td class="py-3 text-center">
+									<span class="text-light font-monospace" th:text="${#numbers.formatDecimal(route.distancia, 1, 2) + ' km'}">0.00 km</span>
+								</td>
+
+								<td class="py-3 text-center">
+									<span class="text-light font-monospace" th:text="${#numbers.formatDecimal(route.preciokilometro, 1, 2) + ' €'}">0.00 €</span>
+								</td>
+
+								<td class="py-3 text-center">
+									<span class="text-warning fw-bold font-monospace fs-5" th:text="${#numbers.formatDecimal(route.precioViaje, 1, 2) + ' €'}">0.00 €</span>
 								</td>
 
 								<td class="py-3 text-center">
