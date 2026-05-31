@@ -1,9 +1,11 @@
 package com.salesianostriana.dam.busrouteplannermariogil.controllers;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -71,4 +73,19 @@ public class RouteController {
 	public String register(Model model) {
 		return "registrousuario";
 	}
+	
+	@ExceptionHandler(IllegalArgumentException.class)
+    public String handleIllegalArgumentRoute(IllegalArgumentException ex, Model model) {
+        model.addAttribute("errorTitulo", "Operación Inválida en Ruta");
+        model.addAttribute("errorMensaje", ex.getMessage());
+        return "errorRuta"; 
+    }
+
+    // Intercepta IDs que no existen (ej: buscar ruta que no existe) en RUTAS
+    @ExceptionHandler(NoSuchElementException.class)
+    public String handleNotFoundRoute(NoSuchElementException ex, Model model) {
+        model.addAttribute("errorTitulo", "Ruta No Encontrada");
+        model.addAttribute("errorMensaje", "La ruta que estás intentando buscar o editar no existe.");
+        return "errorRuta"; 
+    }
 }

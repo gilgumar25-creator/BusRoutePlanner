@@ -1,9 +1,11 @@
 package com.salesianostriana.dam.busrouteplannermariogil.controllers;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +42,7 @@ public BusController(BusService servicio) {
 	
 	@PostMapping("guardarBus/submit")
 	public String submitNuevoBus(@ModelAttribute("bus")Bus bus) {
-		service.save(bus);
+		service.saveBus(bus);
 		return "redirect:/bus/listaBuses";
 		
 		
@@ -69,4 +71,18 @@ public BusController(BusService servicio) {
 		}
 		return "redirect:/bus/listaBuses";
 	}
+	
+	@ExceptionHandler(IllegalArgumentException.class)
+    public String handleIllegalArgumentBus(IllegalArgumentException ex, Model model) {
+        model.addAttribute("errorTitulo", "Operación Inválida en Autobús");
+        model.addAttribute("errorMensaje", ex.getMessage());
+        return "errorBus"; 
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public String handleNotFoundBus(NoSuchElementException ex, Model model) {
+        model.addAttribute("errorTitulo", "Autobús No Encontrado");
+        model.addAttribute("errorMensaje", "El autobús con la matrícula solicitada no está registrado.");
+        return "errorBus"; 
+    }
 }

@@ -15,7 +15,8 @@ package com.salesianostriana.dam.busrouteplannermariogil.controllers;
 	import org.springframework.ui.Model;
 	import org.springframework.web.bind.annotation.*;
 
-	import java.util.Optional;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 	@Controller
 	@RequestMapping("/planificacionRuta")
 	@RequiredArgsConstructor
@@ -48,7 +49,7 @@ package com.salesianostriana.dam.busrouteplannermariogil.controllers;
 
 	    @PostMapping("/guardarPlanificacionRuta")
 	    public String guardar(@ModelAttribute("planificacion") PlanificacionRuta planificacion) {
-	        prservicio.save(planificacion);
+	        prservicio.savePlanificacion(planificacion);
 	        return "redirect:/planificacionRuta";
 	    }
 	    
@@ -72,6 +73,19 @@ package com.salesianostriana.dam.busrouteplannermariogil.controllers;
 	    public String borrarPlanificacionRuta(@PathVariable("id") Long id) {
 	        prservicio.deleteById(id);
 	        return "redirect:/planificacionRuta";
+	    }
+	    @ExceptionHandler(IllegalArgumentException.class)
+	    public String handleIllegalArgumentBus(IllegalArgumentException ex, Model model) {
+	        model.addAttribute("errorTitulo", "Operación Inválida Planificación");
+	        model.addAttribute("errorMensaje", ex.getMessage());
+	        return "errorPlanificacion"; 
+	    }
+
+	    @ExceptionHandler(NoSuchElementException.class)
+	    public String handleNotFoundBus(NoSuchElementException ex, Model model) {
+	        model.addAttribute("errorTitulo", "Autobús No Encontrado");
+	        model.addAttribute("errorMensaje", "La planificación no existe.");
+	        return "errorPlanificacion"; 
 	    }
 
 	}

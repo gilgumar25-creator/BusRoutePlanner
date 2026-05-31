@@ -25,6 +25,7 @@ public class Bus {
 	@Id 
 	private Long matricula;
 	
+	
 	private int capacidad;
 
 
