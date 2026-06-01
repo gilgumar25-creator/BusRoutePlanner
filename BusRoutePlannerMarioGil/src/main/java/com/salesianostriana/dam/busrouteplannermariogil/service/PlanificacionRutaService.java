@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.busrouteplannermariogil.entity.Driver;
 import com.salesianostriana.dam.busrouteplannermariogil.entity.PlanificacionRuta;
+import com.salesianostriana.dam.busrouteplannermariogil.entity.Route;
 import com.salesianostriana.dam.busrouteplannermariogil.exceptions.DriverDuplicadoException;
 import com.salesianostriana.dam.busrouteplannermariogil.repositories.PlanificacionRutaRepository;
 import com.salesianostriana.dam.busrouteplannermariogil.repositories.DriverRepository;
@@ -24,6 +25,10 @@ public class PlanificacionRutaService extends BaseServiceImplem<PlanificacionRut
 
 //@Transactional
 	public void savePlanificacion(PlanificacionRuta pr) {
+		
+		if (pr.getDiaSemana() != null) {
+	        pr.setDiaSemana2(pr.getDiaSemana().getDayOfWeek());
+	    }
 
 		boolean yaAsignado = repository.existsByDriverAndDiaSemana(pr.getDriver(), pr.getDiaSemana());
 
@@ -41,7 +46,7 @@ public class PlanificacionRutaService extends BaseServiceImplem<PlanificacionRut
 		return repository.findAll();
 	}
 	
-	public List<PlanificacionRuta> findByRutasMasUsadas() {
+	public List<Object[]> findByRutasMasUsadas() {
 		return repository.findRutasMasUsadas();
 	}
 	

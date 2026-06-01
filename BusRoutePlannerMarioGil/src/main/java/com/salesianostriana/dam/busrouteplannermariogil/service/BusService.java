@@ -24,7 +24,7 @@ public class BusService extends BaseServiceImplem<Bus, Long, BusRepository> {
 	        throw new CapacidadExcedidaException("No se pueden crear autobuses con más de 100 plazas.");
 	    }
 	    
-	    if (b.getCapacidad() <= 0) {
+	    if (b.getCapacidad() < 1) {
 	        throw new CapacidadExcedidaException("La capacidad debe ser como mínimo de 1 pasajero.");
 	    }
 		repository.save(b);

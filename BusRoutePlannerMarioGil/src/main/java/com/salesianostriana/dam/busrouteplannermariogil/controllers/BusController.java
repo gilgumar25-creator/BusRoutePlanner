@@ -43,7 +43,7 @@ public BusController(BusService servicio) {
 	return "formBus";
 	}
 	
-	@PostMapping("guardarBus/submit")
+	@PostMapping("guardarBus")
 	public String submitNuevoBus(@Valid @ModelAttribute("bus") Bus bus,
             BindingResult bindingResult) {
 		

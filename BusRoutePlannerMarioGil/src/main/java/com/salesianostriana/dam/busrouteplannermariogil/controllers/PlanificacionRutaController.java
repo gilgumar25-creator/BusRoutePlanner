@@ -2,12 +2,10 @@ package com.salesianostriana.dam.busrouteplannermariogil.controllers;
 
 	
 	import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -122,6 +120,16 @@ import lombok.RequiredArgsConstructor;
 	        return "listaPlanificaciones"; 
 	    }
 	    
+	    @GetMapping("/RutasMasUsadas")
+	    public String listarPlanificacionesMasUsadas(Model model) {
+	        // Recoge la lista de arrays de objetos (Ruta + Contador)
+	        List<Object[]> rankingRutas = prservicio.findByRutasMasUsadas();
+	        
+	        model.addAttribute("ranking", rankingRutas);
+	        model.addAttribute("titulo", "RANKING DE RUTAS MÁS UTILIZADAS");
+	        
+	        return "listaRutasMasUsadas"; 
+	    }	    
 	    
 	    
 	    @ExceptionHandler(IllegalArgumentException.class)

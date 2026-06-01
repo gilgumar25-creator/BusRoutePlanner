@@ -10,18 +10,14 @@ import org.springframework.data.jpa.repository.Query;
 import com.salesianostriana.dam.busrouteplannermariogil.entity.Driver;
 import com.salesianostriana.dam.busrouteplannermariogil.entity.PlanificacionRuta;
 
-public interface PlanificacionRutaRepository extends JpaRepository <PlanificacionRuta,Long>{
-	
+
+public interface PlanificacionRutaRepository extends JpaRepository<PlanificacionRuta, Long> {
+
 	boolean existsByDriverAndDiaSemana(Driver driver, LocalDate diaSemana);
 
-	@Query("SELECT p.route FROM PlanificacionRuta p GROUP BY p.route ORDER BY COUNT(p.route) DESC")
-	List<PlanificacionRuta> findRutasMasUsadas();
-	
+	@Query("SELECT p.route, COUNT(p.route) FROM PlanificacionRuta p GROUP BY p.route ORDER BY COUNT(p.route) DESC")
+	List<Object[]> findRutasMasUsadas();
+
 	List<PlanificacionRuta> findByDiaSemana2(DayOfWeek diaSemana2);
-	
-	
-	
-	
-	
 
 }

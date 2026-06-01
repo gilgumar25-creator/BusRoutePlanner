@@ -1,28 +1,35 @@
-<footer th:fragment="footer" 
-class="mt-auto py-3 bg-dark text-white fixed-bottom border-top border-warning border-2">
-    <nav class="container">
-        <div class="row align-items-center">
-            <div class="col-12 col-md-4 text-center text-md-start">
-                <span class="fw-bold">BusRutas © 2026</span>
-            </div>
+<footer th:fragment="footer" class="mt-auto py-4 bg-dark text-white border-top border-warning border-2">
+	<div class="container">
+		<div class="row g-4">
 
-            <div class="col-12 col-md-4 text-center my-2 my-md-0">
-                <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link px-2 text-white-50">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link px-2 text-white-50">Rutas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link px-2 text-white-50">Soporte</a>
-                    </li>
-                </ul>
-            </div>
+			<div class="col-12 col-md-4 text-center text-md-start d-flex flex-column justify-content-center">
+				<h5 class="text-warning fw-bold text-uppercase tracking-wider mb-2">UrbanBus</h5>
+				<p class="small text-white fw-bold m-0">Gestión Inteligente de Rutas</p>
+			</div>
 
-            <div class="col-12 col-md-4 text-center text-md-end">
-                <small class="text-white-50">Seguridad y Confianza</small>
-            </div>
-        </div>
-    </nav>
+			<div class="col-12 col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
+				<h6 class="small text-muted text-uppercase tracking-wide mb-3">Conecta con nosotros</h6>
+				<div class="d-flex gap-3 fs-5">
+					<a href="#" class="text-white-50 text-warning-hover transition-all"><i
+							class="bi bi-facebook"></i></a>
+					<a href="#" class="text-white-50 text-warning-hover transition-all"><i
+							class="bi bi-twitter-x"></i></a>
+					<a href="#" class="text-white-50 text-warning-hover transition-all"><i
+							class="bi bi-instagram"></i></a>
+					<a href="#" class="text-white-50 text-warning-hover transition-all"><i
+							class="bi bi-linkedin"></i></a>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-4 text-center text-md-end d-flex flex-column justify-content-center">
+				<h6 class="small text-warning text-uppercase tracking-wide mb-2">
+					<i class="bi bi-rocket-takeoff-fill me-1"></i> Próximamente
+				</h6>
+				<p class="small text-secondary lh-sm m-0">
+					<span class="text-white fw-semibold">Consorcio de Transportes de Andalucía</span>.
+				</p>
+			</div>
+
+		</div>
+	</div>
 </footer>

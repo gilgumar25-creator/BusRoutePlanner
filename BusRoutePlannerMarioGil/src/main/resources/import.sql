@@ -53,28 +53,43 @@ INSERT INTO driver (licencia, nombre, estado) VALUES (9011, 'Manuel Carrasco', 1
 INSERT INTO driver (licencia, nombre, estado) VALUES (9012, 'Patricia Conde', 0);
 
 
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
-VALUES ('2026-06-01', 'MANANA', 1111, 9001, 101);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
-VALUES ('2026-06-01', 'TARDE', 2222, 9002, 101);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
-VALUES ('2026-06-01', 'MANANA', 3333, 9003, 102);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
-VALUES ('2026-06-01', 'TARDE', 4444, 9004, 103);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
-VALUES ('2026-06-02', 'MANANA', 5555, 9005, 104);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
-VALUES ('2026-06-02', 'TARDE', 6666, 9006, 105);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
-VALUES ('2026-06-02', 'MANANA', 7777, 9007, 106);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
-VALUES ('2026-06-03', 'MANANA', 8888, 9008, 107);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
-VALUES ('2026-06-03', 'TARDE', 9999, 9009, 108);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
-VALUES ('2026-06-03', 'MANANA', 1234, 9010, 110);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
-VALUES ('2026-06-03', 'TARDE', 5678, 9011, 110);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
-VALUES ('2026-06-04', 'MANANA', 9012, 9012, 112);
+-- 2026-06-01 es Lunes -> MONDAY
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-01', 'MONDAY', 'MANANA', 1111, 9001, 101);
+
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-01', 'MONDAY', 'TARDE', 2222, 9002, 101);
+
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-01', 'MONDAY', 'MANANA', 3333, 9003, 102);
+
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-01', 'MONDAY', 'TARDE', 4444, 9004, 103);
+
+-- 2026-06-02 es Martes -> TUESDAY
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-02', 'TUESDAY', 'MANANA', 5555, 9005, 104);
+
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-02', 'TUESDAY', 'TARDE', 6666, 9006, 105);
+
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-02', 'TUESDAY', 'MANANA', 7777, 9007, 106);
+
+-- 2026-06-03 es Miércoles -> WEDNESDAY
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-03', 'WEDNESDAY', 'MANANA', 8888, 9008, 107);
+
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-03', 'WEDNESDAY', 'TARDE', 9999, 9009, 108);
+
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-03', 'WEDNESDAY', 'MANANA', 1234, 9010, 110);
+
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-03', 'WEDNESDAY', 'TARDE', 5678, 9011, 110);
+
+-- 2026-06-04 es Jueves -> THURSDAY
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-04', 'THURSDAY', 'MANANA', 9012, 9012, 112);
 

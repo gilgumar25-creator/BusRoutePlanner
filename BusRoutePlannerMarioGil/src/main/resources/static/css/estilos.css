@@ -1,0 +1,43 @@
+.card, .nav-link, .btn {
+    transition: all 0.3s ease-in-out !important;
+}
+
+/* Efecto elevación y brillo sutil para las tarjetas del dashboard */
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Animación de hover limpia para el menú lateral */
+.aside-link:hover {
+    background-color: rgba(255, 193, 7, 0.1) !important;
+    color: #ffc107 !important;
+    padding-left: 1.25rem !important; /* Desplazamiento orgánico a la derecha */
+}
+
+/* Indicador activo dinámico */
+.aside-link.active {
+    background-color: #ffc107 !important;
+    color: #111418 !important;
+    font-weight: bold;
+}
+
+.bg-logo-gradient-dark {
+    /* Un degradado simple de izquierda a derecha (90deg) */
+    /* Mezclamos negro con versiones oscuras de tu rojo, naranja y amarillo */
+    background: linear-gradient(90deg, 
+        #111418 0%,       /* Negro de fondo para empezar */
+        #5c151c 50%,      /* Un rojo oscuro/vino */
+        #6e3b07 80%,      /* Un naranja tostado */
+        #7a5c00 100%      /* Un amarillo mostaza oscuro */
+    ) !important;
+    
+    /* Una línea sólida abajo con tus colores puros para que resalte tu marca */
+    border-bottom: 3px solid #ffc107 !important; 
+}
+
+/* Cambio de color simple para los textos al pasar el ratón */
+.bg-logo-gradient-dark .nav-link:hover {
+    color: #ffc107 !important; /* Se vuelve amarillo brillante */
+    background-color: rgba(255, 255, 255, 0.05) !important; /* Fondo grisáceo muy tonto */
+}

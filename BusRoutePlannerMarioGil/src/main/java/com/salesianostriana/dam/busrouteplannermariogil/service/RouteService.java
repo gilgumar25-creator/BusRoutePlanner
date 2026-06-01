@@ -19,16 +19,17 @@ public class RouteService extends BaseServiceImplem<Route, Long, RouteRepository
 	private final RouteRepository repository;
 
 	//@Transactional
-	public void saveRuta(Route r) {
-		boolean codigoDuplicado = repository.existsById(r.getCodigo());
-
-        if (codigoDuplicado) {
-            // Si el código ya existe en la base de datos, lanzamos tu excepción
-            throw new RutaSolapadaException(
-                String.format("No se puede guardar la ruta. El código '%d' ya está asignado a otra ruta existente.", 
-                r.getCodigo())
-            );
-        }
+public void saveRuta(Route r, boolean esEdicion) {
+		
+		// Si NO es una edición (es decir, es una RUTA NUEVA) y el código ya existe, es un duplicado real
+		if (!esEdicion && repository.existsById(r.getCodigo())) {
+			throw new RutaSolapadaException(
+				String.format("No se puede guardar la ruta. El código '%d' ya está asignado a otra ruta existente.", 
+				r.getCodigo())
+			);
+		}
+		
+		// Si es una edición, directamente actualiza el registro con ese código (ID) sin lanzar excepción
 		repository.save(r);
 	}
 

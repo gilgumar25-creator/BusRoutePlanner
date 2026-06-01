@@ -1,85 +1,101 @@
-
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<header th:fragment="cabecera">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-warning border-2 px-4 py-2 shadow-lg">
-			<div class="container-fluid px-0">
-				
-				<a class="navbar-brand me-4" th:href="@{/admin/index}">
-					<img th:src="@{/img/Logonavbar.png}" class="rounded-pill" style="width:180px;" alt="UrbanBus Logo"/>
-				</a>
+<header th:fragment="cabecera">
+	<nav class="navbar navbar-expand-lg bg-logo-gradient-dark border-0 border-bottom-0 shadow-none px-4 py-2" 
+	     style="border: none !important; border-bottom: none !important; box-shadow: none !important;">
+		<div class="container-fluid px-0">
 
-				<button class="navbar-toggler border-0 text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#navUrbanBus" aria-controls="navUrbanBus" aria-expanded="false" aria-label="Toggle navigation">
-					<i class="bi bi-grid-3x3-gap-fill fs-2"></i>
-				</button>
+			<a class="navbar-brand me-4" 
+			   th:href="@{/admin/index} ?: @{/operador/index}">
+			    <img th:src="@{/img/Logonavbar.png}" class="rounded-pill" style="width:180px;" alt="UrbanBus Logo" />
+			</a>
 
-				<div class="collapse navbar-collapse" id="navUrbanBus">
-					
-					<ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2 pe-4">
-						<li class="nav-item">
-							<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold" th:href="@{/planificacionRuta}">
-								<i class="bi bi-speedometer2 text-warning fs-5"></i> Planificación
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold" th:href="@{/listaRutas}">
-								<i class="bi bi-signpost-split text-warning fs-5"></i> Rutas
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold" th:href="@{/bus/listaBuses}">
-								<i class="bi bi-truck text-warning fs-5"></i> Buses
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold" th:href="@{/driver/listaDrivers}">
-								<i class="bi bi-people text-warning fs-5"></i> Personal
-							</a>
-						</li>
-						
-						<li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
-						    <a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold" th:href="@{/admin/listaUsuarios}">
-						        <i class="bi bi-person-badge text-warning fs-5"></i> Usuarios
-						    </a>
-						</li>
-					</ul>
+			<button class="navbar-toggler border-0 text-warning" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navUrbanBus" aria-controls="navUrbanBus" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<i class="bi bi-grid-3x3-gap-fill fs-2"></i>
+			</button>
 
-					<div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-3">
-						
-						<form class="d-flex position-relative align-items-center" role="search">
-							<input class="form-control bg-black bg-opacity-40 border-secondary border-opacity-25 text-white rounded-2 ps-3 pe-5 py-2 small" type="search" placeholder="Buscar..." aria-label="Search">
-							<button class="btn text-secondary position-absolute end-0 top-50 translate-middle-y me-1 border-0" type="submit">
-								<i class="bi bi-search text-warning"></i>
-							</button>
-						</form>
-						
-						<div class="dropdown">
-							<button class="btn btn-warning dropdown-toggle rounded-2 px-4 py-2 fw-bold text-dark d-flex align-items-center justify-content-center gap-2 shadow-sm w-100" 
-									type="button" 
-									id="userSessionDropdown" 
-									data-bs-toggle="dropdown" 
-									aria-expanded="false">
-								<i class="bi bi-shield-lock-fill"></i>
-								<span th:text="${@securityConfig.getUsername() != '' ? @securityConfig.getUsername() : 'Sesión'}">Sesión</span>
-							</button>
-							
-							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow border-warning mt-2" aria-labelledby="userSessionDropdown">
-								<li>
-									<a class="dropdown-item small d-flex align-items-center gap-2" th:href="@{/login}">
-										<i class="bi bi-arrow-left-right text-info"></i> Cambiar cuenta
-									</a>
-								</li>
-								<li><hr class="dropdown-divider border-secondary"></li>
-								<li>
-									<a class="dropdown-item small text-danger d-flex align-items-center gap-2" th:href="@{/login?logout}" method="POST">
-										<i class="bi bi-box-arrow-right"></i> Cerrar sesión
-									</a>
-								</li>
-							</ul>
-						</div>
-						
+			<div class="collapse navbar-collapse" id="navUrbanBus">
+
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2 pe-4">
+					<li class="nav-item">
+						<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold"
+							th:href="@{/planificacionRuta}">
+							<i class="bi bi-speedometer2 text-warning fs-5"></i> Planificación
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold"
+							th:href="@{/listaRutas}">
+							<i class="bi bi-signpost-split text-warning fs-5"></i> Rutas
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold"
+							th:href="@{/bus/listaBuses}">
+							<i class="bi bi-truck text-warning fs-5"></i> Buses
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold"
+							th:href="@{/driver/listaDrivers}">
+							<i class="bi bi-people text-warning fs-5"></i> Personal
+						</a>
+					</li>
+
+					<li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+						<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold"
+							th:href="@{/admin/listaUsuarios}">
+							<i class="bi bi-person-badge text-warning fs-5"></i> Usuarios
+						</a>
+					</li>
+				</ul>
+
+				<div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-3">
+
+					<form class="d-flex position-relative align-items-center" role="search">
+						<input
+							class="form-control bg-black bg-opacity-40 border-secondary border-opacity-25 text-white rounded-2 ps-3 pe-5 py-2 small"
+							type="search" placeholder="Buscar..." aria-label="Search">
+						<button
+							class="btn text-secondary position-absolute end-0 top-50 translate-middle-y me-1 border-0"
+							type="submit">
+							<i class="bi bi-search text-warning"></i>
+						</button>
+					</form>
+
+					<div class="dropdown">
+						<button
+							class="btn btn-warning dropdown-toggle rounded-2 px-4 py-2 fw-bold text-dark d-flex align-items-center justify-content-center gap-2 shadow-sm w-100"
+							type="button" id="userSessionDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-shield-lock-fill"></i>
+							<span
+								th:text="${@securityConfig.getUsername() != '' ? @securityConfig.getUsername() : 'Sesión'}">Sesión</span>
+						</button>
+
+						<ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow border-warning mt-2"
+							aria-labelledby="userSessionDropdown">
+							<li>
+								<a class="dropdown-item small d-flex align-items-center gap-2" th:href="@{/login}">
+									<i class="bi bi-arrow-left-right text-info"></i> Cambiar cuenta
+								</a>
+							</li>
+							<li>
+								<hr class="dropdown-divider border-secondary">
+							</li>
+							<li>
+								<a class="dropdown-item small text-danger d-flex align-items-center gap-2"
+									th:href="@{/login?logout}" method="POST">
+									<i class="bi bi-box-arrow-right"></i> Cerrar sesión
+								</a>
+							</li>
+						</ul>
 					</div>
-				</div>
 
+				</div>
 			</div>
-		</nav>
-	</header>
+
+		</div>
+	</nav>
+</header>
+</html>

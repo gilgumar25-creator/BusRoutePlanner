@@ -46,8 +46,8 @@ public class RouteController {
             return "formRuta";
         }
 
-		// service.save(route);
-		service.saveRuta(route);
+        boolean esEdicion = service.findById(route.getCodigo()).isPresent();
+		service.saveRuta(route,esEdicion);
 
 		return "redirect:/listaRutas";
 	}
@@ -76,11 +76,7 @@ public class RouteController {
 		}
 		return "redirect:/listaRutas";
 	}
-
-	@GetMapping("/Registro")
-	public String register(Model model) {
-		return "registrousuario";
-	}
+	
 	
 	@ExceptionHandler(IllegalArgumentException.class)
     public String handleIllegalArgumentRoute(IllegalArgumentException ex, Model model) {
@@ -89,7 +85,6 @@ public class RouteController {
         return "errorRuta"; 
     }
 
-    // Intercepta IDs que no existen (ej: buscar ruta que no existe) en RUTAS
     @ExceptionHandler(NoSuchElementException.class)
     public String handleNotFoundRoute(NoSuchElementException ex, Model model) {
         model.addAttribute("errorTitulo", "Ruta No Encontrada");

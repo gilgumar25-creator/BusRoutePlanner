@@ -36,6 +36,7 @@ public class PlanificacionRuta {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate diaSemana;
     
+    @Enumerated(EnumType.STRING)
     private DayOfWeek diaSemana2;
  
     @NotNull(message = "El horario es obligatorio")
