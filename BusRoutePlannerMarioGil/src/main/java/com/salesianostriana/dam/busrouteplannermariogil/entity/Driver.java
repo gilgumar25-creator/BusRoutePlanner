@@ -9,6 +9,10 @@ import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,12 +21,18 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor @Entity@Builder
 public class Driver {
 
-	@Id 
-	private Long licencia;
-	
-	private String nombre;
-	
-	private String avatar;
+    @Id
+    @NotNull(message = "El número de licencia es obligatorio")
+    @Min(value = 1, message = "La licencia debe ser mayor que 0")
+    private Long licencia;
+ 
+    @NotBlank(message = "El nombre del conductor es obligatorio")
+    @Size(min = 2, max = 80, message = "El nombre debe tener entre 2 y 80 caracteres")
+    private String nombre;
+ 
+    @Size(max = 255, message = "La URL del avatar no puede superar los 255 caracteres")
+    private String avatar;
+
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_bus",

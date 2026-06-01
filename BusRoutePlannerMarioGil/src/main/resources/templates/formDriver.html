@@ -25,50 +25,57 @@
                     <div class="card-body p-5">
                         <form th:action="@{/driver/guardarDriver/submit}" th:object="${driver}" method="post">
 
-                            <div class="mb-4">
-                                <label for="licencia" class="form-label fw-bold text-secondary small text-uppercase">Número de Licencia</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-white border-end-0"><i class="bi bi-card-heading"></i></span>
-                                    <input type="number" step="1" min="1" class="form-control border-start-0 ps-0" id="licencia" th:field="*{licencia}" 
-                                           placeholder="Ej. 102030" th:readonly="${driver.licencia != null}" required>
-                                </div>
-                            </div>
+							<div class="mb-4">
+							    <label for="licencia" class="form-label fw-bold text-secondary small text-uppercase">Número de Licencia</label>
+							    <div class="input-group">
+							        <span class="input-group-text bg-white border-end-0"><i class="bi bi-card-heading"></i></span>
+							        <input type="number" step="1" id="licencia" th:field="*{licencia}" 
+							               placeholder="Ej. 102030" th:readonly="${driver.licencia != null}"
+							               class="form-control border-start-0 ps-0"
+							               th:classappend="${#fields.hasErrors('licencia')} ? 'is-invalid' : ''">
+							    </div>
+							    <div th:replace="~{fragments/errors :: fieldError(campo='licencia')}"></div>
+							</div>
 
                             <div class="mb-4">
                                 <label for="nombre" class="form-label fw-bold text-secondary small text-uppercase">Nombre Completo</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-white border-end-0"><i class="bi bi-person"></i></span>
-                                    <input type="text" class="form-control border-start-0 ps-0" id="nombre" th:field="*{nombre}" 
-                                           placeholder="Nombre y Apellidos" required>
+                                    <input type="text" id="nombre" th:field="*{nombre}" 
+                                           placeholder="Nombre y Apellidos"
+                                           class="form-control border-start-0 ps-0"
+                                           th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
                                 </div>
+                                <div th:replace="~{fragments/errors :: fieldError(campo='nombre')}"></div>
                             </div>
 
                             <div class="mb-2">
-                                <label class="form-label d-block fw-bold text-secondary small text-uppercase mb-3">Selecciona un Avatar</label>
-                                <div class="d-flex gap-4 justify-content-center bg-light p-3 rounded-3">
+                                <label class="class=form-label d-block fw-bold text-secondary small text-uppercase mb-3">Selecciona un Avatar</label>
+                                <div class="d-flex gap-4 justify-content-center bg-light p-3 rounded-3" th:classappend="${#fields.hasErrors('avatar')} ? 'border border-danger' : ''">
                                     
                                     <div class="form-check p-0 m-0">
-                                        <input type="radio" class="btn-check" name="avatar" id="av1" value="avatar1" required>
+                                        <input type="radio" class="btn-check" name="avatar" id="av1" value="avatar1" th:field="*{avatar}">
                                         <label class="btn btn-outline-warning p-1 rounded-circle border-2" for="av1">
                                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" class="rounded-circle" width="65" height="65" alt="Avatar 1">
                                         </label>
                                     </div>
 
                                     <div class="form-check p-0 m-0">
-                                        <input type="radio" class="btn-check" name="avatar" id="av2" value="avatar2">
+                                        <input type="radio" class="btn-check" name="avatar" id="av2" value="avatar2" th:field="*{avatar}">
                                         <label class="btn btn-outline-warning p-1 rounded-circle border-2" for="av2">
                                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka" class="rounded-circle" width="65" height="65" alt="Avatar 2">
                                         </label>
                                     </div>
 
                                     <div class="form-check p-0 m-0">
-                                        <input type="radio" class="btn-check" name="avatar" id="av3" value="avatar3">
+                                        <input type="radio" class="btn-check" name="avatar" id="av3" value="avatar3" th:field="*{avatar}">
                                         <label class="btn btn-outline-warning p-1 rounded-circle border-2" for="av3">
                                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jace" class="rounded-circle" width="65" height="65" alt="Avatar 3">
                                         </label>
                                     </div>
 
                                 </div>
+                                <div th:replace="~{fragments/errors :: fieldError(campo='avatar')}"></div>
                             </div>
 
                             <div class="mt-5 d-flex gap-3">

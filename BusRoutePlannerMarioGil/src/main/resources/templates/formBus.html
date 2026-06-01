@@ -29,10 +29,13 @@
 						<form th:action="@{/bus/guardarBus/submit}" th:object="${bus}" method="POST">
 
 							<div class="mb-4">
-								<label for="matricula" class="form-label fw-bold">Matrícula (Solo números)</label>
-								<input type="text" inputmode="numeric" pattern="[0-9]*" id="matricula"
-									th:field="*{matricula}" class="form-control" placeholder="Ej: 1234" required 
-									th:readonly="${bus.matricula != null}" />
+							    <label for="matricula" class="form-label fw-bold">Matrícula (Solo números)</label>
+							    <input type="text" inputmode="numeric" pattern="[0-9]*" id="matricula"
+							        th:field="*{matricula}" placeholder="Ej: 1234" 
+							        th:readonly="${bus.matricula != null}" 
+							        class="form-control"
+							        th:classappend="${#fields.hasErrors('matricula')} ? 'is-invalid' : ''" />
+							    <div th:replace="~{fragments/errors :: fieldError(campo='matricula')}"></div>
 							</div>
 
 							<div class="mb-4">

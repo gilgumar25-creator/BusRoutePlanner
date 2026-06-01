@@ -1,22 +1,30 @@
 package com.salesianostriana.dam.busrouteplannermariogil.controllers;
 
 	
-	import com.salesianostriana.dam.busrouteplannermariogil.entity.PlanificacionRuta;
-	import com.salesianostriana.dam.busrouteplannermariogil.entity.Route;
-	import com.salesianostriana.dam.busrouteplannermariogil.entity.Bus;
-	import com.salesianostriana.dam.busrouteplannermariogil.entity.Driver;
-	import com.salesianostriana.dam.busrouteplannermariogil.service.PlanificacionRutaService;
-	import com.salesianostriana.dam.busrouteplannermariogil.service.RouteService;
-	import com.salesianostriana.dam.busrouteplannermariogil.service.BusService;
-	import com.salesianostriana.dam.busrouteplannermariogil.service.DriverService;
-
-	import lombok.RequiredArgsConstructor;
-	import org.springframework.stereotype.Controller;
-	import org.springframework.ui.Model;
-	import org.springframework.web.bind.annotation.*;
-
-import java.util.NoSuchElementException;
+	import java.util.NoSuchElementException;
 import java.util.Optional;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.salesianostriana.dam.busrouteplannermariogil.entity.Bus;
+import com.salesianostriana.dam.busrouteplannermariogil.entity.Driver;
+import com.salesianostriana.dam.busrouteplannermariogil.entity.PlanificacionRuta;
+import com.salesianostriana.dam.busrouteplannermariogil.entity.Route;
+import com.salesianostriana.dam.busrouteplannermariogil.service.BusService;
+import com.salesianostriana.dam.busrouteplannermariogil.service.DriverService;
+import com.salesianostriana.dam.busrouteplannermariogil.service.PlanificacionRutaService;
+import com.salesianostriana.dam.busrouteplannermariogil.service.RouteService;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 	@Controller
 	@RequestMapping("/planificacionRuta")
 	@RequiredArgsConstructor
@@ -48,7 +56,16 @@ import java.util.Optional;
 	    }
 
 	    @PostMapping("/guardarPlanificacionRuta")
-	    public String guardar(@ModelAttribute("planificacion") PlanificacionRuta planificacion) {
+	    public String guardar(@Valid @ModelAttribute("planificacion") PlanificacionRuta planificacion,
+                BindingResult bindingResult, Model model) {
+	    	
+	        if (bindingResult.hasErrors()) {
+	            model.addAttribute("rutas", routeservice.findAll());
+	            model.addAttribute("buses", busservice.findAll());
+	            model.addAttribute("conductores", driverservice.findAll());
+	            return "formPlanificacionRuta";
+	        }
+
 	        prservicio.savePlanificacion(planificacion);
 	        return "redirect:/planificacionRuta";
 	    }

@@ -32,14 +32,18 @@
 							<div class="mb-4">
 								<label for="codigo" class="form-label fw-bold">Código Ruta (Solo números)</label>
 								<input type="text" inputmode="numeric" pattern="[0-9]*" id="codigo" th:field="*{codigo}"
-									class="form-control" placeholder="Ej: 101" required 
-									th:readonly="${route.codigo != null}" />
+									placeholder="Ej: 101" th:readonly="${route.codigo != null}" 
+									class="form-control"
+									th:classappend="${#fields.hasErrors('codigo')} ? 'is-invalid' : ''" />
+								<div th:replace="~{fragments/errors :: fieldError(campo='codigo')}"></div>
 							</div>
 
 							<div class="row">
 								<div class="col-md-6 mb-4">
 									<label for="origen" class="form-label fw-bold">Origen</label>
-									<select id="origen" th:field="*{origen}" class="form-select" required>
+									<select id="origen" th:field="*{origen}" 
+										class="form-select"
+										th:classappend="${#fields.hasErrors('origen')} ? 'is-invalid' : ''">
 										<option value="" selected disabled hidden>Selecciona origen...</option>
 										<option value="Sevilla (Capital)">Sevilla (Capital)</option>
 										<option value="Dos Hermanas">Dos Hermanas</option>
@@ -49,11 +53,14 @@
 										<option value="Palomares del Rio">Palomares del Río</option>
 										<option value="La Rinconada">La Rinconada</option>
 									</select>
+									<div th:replace="~{fragments/errors :: fieldError(campo='origen')}"></div>
 								</div>
 
 								<div class="col-md-6 mb-4">
 									<label for="destino" class="form-label fw-bold">Destino</label>
-									<select id="destino" th:field="*{destino}" class="form-select" required>
+									<select id="destino" th:field="*{destino}" 
+										class="form-select"
+										th:classappend="${#fields.hasErrors('destino')} ? 'is-invalid' : ''">
 										<option value="" selected disabled hidden>Selecciona destino...</option>
 										<option value="Sevilla (Capital)">Sevilla (Capital)</option>
 										<option value="Dos Hermanas">Dos Hermanas</option>
@@ -63,6 +70,7 @@
 										<option value="Écija">Écija</option>
 										<option value="La Rinconada">La Rinconada</option>
 									</select>
+									<div th:replace="~{fragments/errors :: fieldError(campo='destino')}"></div>
 								</div>
 							</div>
 
@@ -72,14 +80,17 @@
 								<div class="col-md-6 mb-4">
 									<label for="distancia" class="form-label fw-bold">Distancia (KM)</label>
 									<input type="number" step="0.01" min="0" id="distancia" th:field="*{distancia}"
-										class="form-control" placeholder="0.00" required />
+										class="form-control" placeholder="0.00" 
+										th:classappend="${#fields.hasErrors('distancia')} ? 'is-invalid' : ''" />
+									<div th:replace="~{fragments/errors :: fieldError(campo='distancia')}"></div>
 								</div>
 
 								<div class="col-md-6 mb-4">
 									<label for="preciokilometro" class="form-label fw-bold">Precio por KM (€)</label>
-									<input type="number" step="0.01" min="0" id="preciokilometro"
-										th:field="*{preciokilometro}" class="form-control"
-										placeholder="0.00" required />
+									<input type="number" step="0.01" min="0" id="preciokilometro" th:field="*{preciokilometro}" 
+										class="form-control" placeholder="0.00" 
+										th:classappend="${#fields.hasErrors('preciokilometro')} ? 'is-invalid' : ''" />
+									<div th:replace="~{fragments/errors :: fieldError(campo='preciokilometro')}"></div>
 								</div>
 							</div>
 
@@ -93,7 +104,9 @@
 							<div class="mb-4">
 								<label for="buses" class="form-label fw-bold">Nº Máximo de Buses Simultáneos</label>
 								<input type="number" min="1" id="buses" th:field="*{numeroMaximoBusesSimultaneos}"
-									class="form-control" placeholder="1" required />
+									class="form-control" placeholder="1" 
+									th:classappend="${#fields.hasErrors('numeroMaximoBusesSimultaneos')} ? 'is-invalid' : ''" />
+								<div th:replace="~{fragments/errors :: fieldError(campo='numeroMaximoBusesSimultaneos')}"></div>
 							</div>
 
 							<div class="mt-4 pt-3 border-top d-flex justify-content-between">

@@ -17,7 +17,6 @@
 				<div class="card-header bg-dark text-white p-3 text-center">
 				    <h3 class="mb-0 fs-5 fw-bold d-flex align-items-center justify-content-center gap-2">
 				        <i class="bi bi-map-fill text-warning"></i>
-				        
 				        <span th:text="${planificacion.codigo != null} ? 'EDITAR PLANIFICACIÓN' : 'NUEVA PLANIFICACIÓN'">REGISTRO</span>
 				    </h3>
 				</div>
@@ -29,15 +28,21 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <label for="diaSemana" class="form-label fw-bold">Fecha de Servicio</label>
-                                    <input type="date" class="form-control" id="diaSemana" th:field="*{diaSemana}" required>
+                                    <input type="date" id="diaSemana" th:field="*{diaSemana}"
+                                           class="form-control"
+                                           th:classappend="${#fields.hasErrors('diaSemana')} ? 'is-invalid' : ''">
+                                    <div th:replace="~{fragments/errors :: fieldError(campo='diaSemana')}"></div>
                                 </div>
 
                                 <div class="col-md-6 mb-4">
                                     <label for="horario" class="form-label fw-bold">Turno / Horario</label>
-                                    <select id="horario" class="form-select" th:field="*{horario}" required>
+                                    <select id="horario" th:field="*{horario}" 
+                                            class="form-select"
+                                            th:classappend="${#fields.hasErrors('horario')} ? 'is-invalid' : ''">
                                         <option value="MANANA">Mañana</option>
                                         <option value="TARDE">Tarde</option>
                                     </select>
+                                    <div th:replace="~{fragments/errors :: fieldError(campo='horario')}"></div>
                                 </div>
                             </div>
 
@@ -45,36 +50,45 @@
 
                             <div class="mb-4">
                                 <label for="route" class="form-label fw-bold">ASIGNAR RUTA</label>
-                                <select id="route" class="form-select" th:field="*{route.codigo}" required>
+                                <select id="route" th:field="*{route.codigo}" 
+                                        class="form-select"
+                                        th:classappend="${#fields.hasErrors('route.codigo')} ? 'is-invalid' : ''">
                                     <option value="" hidden>Selecciona ruta...</option>
                                     <option th:each="r : ${rutas}" 
                                             th:value="${r.codigo}" 
                                             th:text="${r.codigo + ' (' + r.origen + ' ➔ ' + r.destino + ')'}">
                                     </option>
                                 </select>
+                                <div th:replace="~{fragments/errors :: fieldError(campo='route.codigo')}"></div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <label for="bus" class="form-label fw-bold">ASIGNAR BUS</label>
-                                    <select id="bus" class="form-select" th:field="*{bus.matricula}" required>
+                                    <select id="bus" th:field="*{bus.matricula}" 
+                                            class="form-select"
+                                            th:classappend="${#fields.hasErrors('bus.matricula')} ? 'is-invalid' : ''">
                                         <option value="" hidden>Selecciona bus...</option>
                                         <option th:each="b : ${buses}" 
                                                 th:value="${b.matricula}" 
                                                 th:text="${b.matricula + ' (' + b.capacidad + ' plazas)'}">
                                         </option>
                                     </select>
+                                    <div th:replace="~{fragments/errors :: fieldError(campo='bus.matricula')}"></div>
                                 </div>
 
                                 <div class="col-md-6 mb-4">
                                     <label for="driver" class="form-label fw-bold">ASIGNAR CONDUCTOR</label>
-                                    <select id="driver" class="form-select" th:field="*{driver.licencia}" required>
+                                    <select id="driver" th:field="*{driver.licencia}" 
+                                            class="form-select"
+                                            th:classappend="${#fields.hasErrors('driver.licencia')} ? 'is-invalid' : ''">
                                         <option value="" hidden>Selecciona conductor...</option>
                                         <option th:each="d : ${conductores}" 
                                                 th:value="${d.licencia}" 
                                                 th:text="${d.nombre}">
                                         </option>
                                     </select>
+                                    <div th:replace="~{fragments/errors :: fieldError(campo='driver.licencia')}"></div>
                                 </div>
                             </div>
 

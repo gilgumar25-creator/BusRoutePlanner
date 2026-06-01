@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.busrouteplannermariogil.entity.Bus;
 import com.salesianostriana.dam.busrouteplannermariogil.service.BusService;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/bus")
@@ -41,7 +44,13 @@ public BusController(BusService servicio) {
 	}
 	
 	@PostMapping("guardarBus/submit")
-	public String submitNuevoBus(@ModelAttribute("bus")Bus bus) {
+	public String submitNuevoBus(@Valid @ModelAttribute("bus") Bus bus,
+            BindingResult bindingResult) {
+		
+        if (bindingResult.hasErrors()) {
+            return "formBus";
+        }
+
 		service.saveBus(bus);
 		return "redirect:/bus/listaBuses";
 		

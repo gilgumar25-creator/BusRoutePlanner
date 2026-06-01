@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragmentos de Errores</title>
+</head>
+<body>
+
+    <div th:fragment="fieldError(campo)">
+        <div th:if="${#fields.hasErrors(campo)}" class="invalid-feedback d-block mt-1 animate__animated animate__fadeIn">
+            <i class="bi bi-exclamation-circle-fill me-1"></i>
+            <span th:errors="*{__${campo}__}">Texto de error por defecto</span>
+        </div>
+    </div>
+
+    <div th:fragment="allErrors">
+        <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <h5 class="alert-heading fw-bold mb-2">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>Por favor, corrige los siguientes errores:
+            </h5>
+            <ul class="mb-0 ps-3">
+                <li th:each="err : ${#fields.detailedErrors()}" class="small">
+                    <strong th:text="${err.fieldName != null ? err.fieldName + ': ' : ''}">Campo</strong> 
+                    <span th:text="${err.message}">Mensaje de error</span>
+                </li>
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -5,15 +5,17 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.busrouteplannermariogil.entity.Route;
 import com.salesianostriana.dam.busrouteplannermariogil.service.RouteService;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class RouteController {
@@ -37,7 +39,13 @@ public class RouteController {
 	}
 
 	@PostMapping("/guardarRuta/submit")
-	public String submitNuevaRuta(@ModelAttribute("route") Route route) {
+	public String submitNuevaRuta(@Valid @ModelAttribute("route") Route route,
+            BindingResult bindingResult) {
+		
+        if (bindingResult.hasErrors()) {
+            return "formRuta";
+        }
+
 		// service.save(route);
 		service.saveRuta(route);
 
