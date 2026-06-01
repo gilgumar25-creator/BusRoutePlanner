@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.busrouteplannermariogil.service;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -17,28 +19,37 @@ import lombok.AllArgsConstructor;
 @Service
 public class PlanificacionRutaService extends BaseServiceImplem<PlanificacionRuta, Long, PlanificacionRutaRepository> {
 
-private final PlanificacionRutaRepository repository;
-private final DriverRepository DriverRepository;
+	private final PlanificacionRutaRepository repository;
+	private final DriverRepository DriverRepository;
 
 //@Transactional
-public void savePlanificacion(PlanificacionRuta pr) {
-	
-	boolean yaAsignado = repository.existsByDriverAndDiaSemana(pr.getDriver(), pr.getDiaSemana());
+	public void savePlanificacion(PlanificacionRuta pr) {
 
-        if (yaAsignado) {
-        	Driver conductor = DriverRepository.findById(pr.getDriver().getLicencia())
-                    .orElse(pr.getDriver());
-        	throw new DriverDuplicadoException(
-                    "El conductor " + conductor.getNombre() +
-                    " ya cuenta con un turno asignado para el día " + pr.getDiaSemana() + 
-                    ". No se le permite doblar turno (mañana y tarde) el mismo día."
-                );
-        }
-	
-repository.save(pr);
-}
+		boolean yaAsignado = repository.existsByDriverAndDiaSemana(pr.getDriver(), pr.getDiaSemana());
 
-public List<PlanificacionRuta> findAll() {
-return repository.findAll();
-}
+		if (yaAsignado) {
+			Driver conductor = DriverRepository.findById(pr.getDriver().getLicencia()).orElse(pr.getDriver());
+			throw new DriverDuplicadoException(
+					"El conductor " + conductor.getNombre() + " ya cuenta con un turno asignado para el día "
+							+ pr.getDiaSemana() + ". No se le permite doblar turno (mañana y tarde) el mismo día.");
+		}
+
+		repository.save(pr);
+	}
+
+	public List<PlanificacionRuta> findAll() {
+		return repository.findAll();
+	}
+	
+	public List<PlanificacionRuta> findByRutasMasUsadas() {
+		return repository.findRutasMasUsadas();
+	}
+	
+	public List<PlanificacionRuta> buscarPorDiaDeLaSemana(DayOfWeek diaSemana2) {
+	    if (diaSemana2 == null) {
+	        throw new IllegalArgumentException("El día de la semana no puede ser nulo");
+	    }
+	    
+	    return repository.findByDiaSemana2(diaSemana2);
+	}
 }

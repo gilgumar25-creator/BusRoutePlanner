@@ -1,7 +1,6 @@
 package com.salesianostriana.dam.busrouteplannermariogil.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import com.salesianostriana.dam.busrouteplannermariogil.servicebase.BaseServiceI
 @Service
 public class DriverService extends BaseServiceImplem<Driver,Long,DriverRepository>{
 	
+	
 private List <Driver> listaDrivers = new ArrayList <Driver>();
 	
 	public void addDriver (Driver d) {
@@ -22,5 +22,9 @@ private List <Driver> listaDrivers = new ArrayList <Driver>();
 	
 	public List<Driver> getlistaDrivers (){
 		return listaDrivers; 
+	}
+	
+	public List<Driver> findByActivo (){
+		return repository.findByEstadoTrue();
 	}
 }

@@ -111,5 +111,14 @@ public class DriverController {
 		return "redirect:/driver/listaDrivers";
 
 	}
+	
+	@GetMapping("/listaDrivers/activos")
+	public String listarPorActivos(Model model) {
+		model.addAttribute("driversList",service.findByActivo());
+		
+		return "listaDrivers";
+	}
+	
+	
 
 }

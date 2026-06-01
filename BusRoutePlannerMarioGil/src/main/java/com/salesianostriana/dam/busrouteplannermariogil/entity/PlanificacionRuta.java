@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.busrouteplannermariogil.entity;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,6 +35,8 @@ public class PlanificacionRuta {
     @FutureOrPresent(message = "La fecha del turno no puede ser anterior a hoy")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate diaSemana;
+    
+    private DayOfWeek diaSemana2;
  
     @NotNull(message = "El horario es obligatorio")
     @Enumerated(EnumType.STRING)
@@ -41,17 +44,17 @@ public class PlanificacionRuta {
  
     @NotNull(message = "Debes seleccionar una ruta")
     @ManyToOne
-    @JoinColumn(name = "route_id")
+    @JoinColumn(name = "route_codigo")
     private Route route;
  
     @NotNull(message = "Debes seleccionar un autobús")
     @ManyToOne
-    @JoinColumn(name = "bus_id")
+    @JoinColumn(name = "bus_matricula")
     private Bus bus;
  
     @NotNull(message = "Debes seleccionar un conductor")
     @ManyToOne
-    @JoinColumn(name = "driver_id")
+    @JoinColumn(name = "driver_licencia")
     private Driver driver;
 
 }

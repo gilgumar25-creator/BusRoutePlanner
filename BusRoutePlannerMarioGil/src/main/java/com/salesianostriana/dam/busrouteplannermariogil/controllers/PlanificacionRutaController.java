@@ -1,9 +1,13 @@
 package com.salesianostriana.dam.busrouteplannermariogil.controllers;
 
 	
-	import java.util.NoSuchElementException;
+	import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.salesianostriana.dam.busrouteplannermariogil.entity.Bus;
 import com.salesianostriana.dam.busrouteplannermariogil.entity.Driver;
@@ -91,6 +96,34 @@ import lombok.RequiredArgsConstructor;
 	        prservicio.deleteById(id);
 	        return "redirect:/planificacionRuta";
 	    }
+	    
+	    
+	    
+	   /* @GetMapping("/listaPlanificaiones/viajeporfecha")
+		public String listarViajePorFecha(Model model) {
+	    	
+	    	List<PlanificacionRuta> fecha = prservicio.findByFecha(LocalDate.now());
+	    	
+			model.addAttribute("planificaciones", fecha);
+			
+			return "listaDrivers";
+		}*/
+	    
+	    @GetMapping("/porDia")
+	    public String listarPorDia(@RequestParam("nombre") DayOfWeek nombre, Model model) {
+	        // Llamamos a tu servicio pasándole el Enum
+	        List<PlanificacionRuta> filtradas = prservicio.buscarPorDiaDeLaSemana(nombre);
+	        
+	        // Volvemos a llenar el modelo para la misma vista de listado
+	        model.addAttribute("planificaciones", filtradas);
+	        // Opcional: mandamos el día seleccionado por si quieres mostrar un título dinámico en el HTML
+	        model.addAttribute("diaSeleccionado", nombre); 
+	        
+	        return "listaPlanificaciones"; 
+	    }
+	    
+	    
+	    
 	    @ExceptionHandler(IllegalArgumentException.class)
 	    public String handleIllegalArgumentBus(IllegalArgumentException ex, Model model) {
 	        model.addAttribute("errorTitulo", "Operación Inválida Planificación");

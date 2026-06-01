@@ -43,7 +43,7 @@
 						
 						<thead class="table-group-divider text-uppercase small text-warning">
 							<tr>
-								<th class="py-3 ps-4 text-center w-25 fw-bold text-warning ">Perfil</th>
+								<th class="py-3 ps-4 text-center w-25 fw-bold text-warning ">Estado</th>
 								<th class="py-3 text-start w-25 fw-bold text-warning">Nº Licencia</th>
 								<th class="py-3 text-start w-25 fw-bold text-warning">Nombre Operador</th>
 								<th class="py-3 text-end pe-4 w-25 fw-bold text-warning">Acciones</th>
@@ -63,14 +63,12 @@
 							<tr th:each="driver : ${driversList}">
 								
 								<td class="py-3 ps-4 text-center">
-									<div class="d-inline-flex align-items-center justify-content-center bg-dark rounded-circle border border-secondary shadow-sm" style="width: 48px; height: 48px; overflow: hidden;">
-										<img th:if="${driver.avatar != null and !#strings.isEmpty(driver.avatar)}" 
-											 th:src="${driver.avatar}" 
-											 class="w-100 h-100 object-fit-cover"
-											 alt="AVT">
-										<i th:if="${driver.avatar == null or #strings.isEmpty(driver.avatar)}" 
-										   class="bi bi-person-fill text-secondary fs-4"></i>
-									</div>
+									<span th:if="${driver.estado}" class="badge bg-success bg-opacity-75 border border-success text-white px-3 py-2 rounded-pill shadow-sm">
+										<i class="bi bi-check-circle-fill me-1"></i> Activo
+									</span>
+									<span th:if="${!driver.estado}" class="badge bg-danger bg-opacity-75 border border-danger text-white px-3 py-2 rounded-pill shadow-sm">
+										<i class="bi bi-x-circle-fill me-1"></i> Inactivo
+									</span>
 								</td>
 
 								<td class="py-3 text-start">

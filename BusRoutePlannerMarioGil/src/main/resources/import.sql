@@ -1,4 +1,4 @@
-/*
+
 INSERT INTO route (codigo, origen, destino, distancia, preciokilometro, precio_viaje, numero_maximo_buses_simultaneos) 
 VALUES (101, 'Sevilla (Capital)', 'Utrera', 32.5, 1.20, 39.00, 3);
 INSERT INTO route (codigo, origen, destino, distancia, preciokilometro, precio_viaje, numero_maximo_buses_simultaneos) 
@@ -25,7 +25,6 @@ INSERT INTO route (codigo, origen, destino, distancia, preciokilometro, precio_v
 VALUES (112, 'Sevilla (Capital)', 'Palomares del Rio', 11.2, 1.35, 15.12, 3);
 
 
-
 INSERT INTO bus (matricula, capacidad, id_route) VALUES (1111, 55, 101);
 INSERT INTO bus (matricula, capacidad, id_route) VALUES (2222, 60, 101);
 INSERT INTO bus (matricula, capacidad, id_route) VALUES (3333, 45, 102);
@@ -40,44 +39,42 @@ INSERT INTO bus (matricula, capacidad, id_route) VALUES (5678, 75, 110);
 INSERT INTO bus (matricula, capacidad, id_route) VALUES (9012, 55, 112);
 
 
-
-INSERT INTO driver (licencia, nombre, avatar, id_bus) VALUES (9001, 'Mario Gil', 'mario.png', 1111);
-INSERT INTO driver (licencia, nombre, avatar, id_bus) VALUES (9002, 'Ana Silva', 'ana.png', 2222);
-INSERT INTO driver (licencia, nombre, avatar, id_bus) VALUES (9003, 'Carlos Pérez', 'carlos.png', 3333);
-INSERT INTO driver (licencia, nombre, avatar, id_bus) VALUES (9004, 'Luisa Ramos', 'luisa.png', 4444);
-INSERT INTO driver (licencia, nombre, avatar, id_bus) VALUES (9005, 'David Cobos', 'david.png', 5555);
-INSERT INTO driver (licencia, nombre, avatar, id_bus) VALUES (9006, 'Elena Pozo', 'elena.png', 6666);
-INSERT INTO driver (licencia, nombre, avatar, id_bus) VALUES (9007, 'Alejandro Sanz', 'alejandro.png', 7777);
-INSERT INTO driver (licencia, nombre, avatar, id_bus) VALUES (9008, 'Beatriz Luna', 'beatriz.png', 8888);
-INSERT INTO driver (licencia, nombre, avatar, id_bus) VALUES (9009, 'Javier Naranjo', 'javier.png', 9999);
-INSERT INTO driver (licencia, nombre, avatar, id_bus) VALUES (9010, 'Rocío Jurado', 'rocio.png', 1234);
-INSERT INTO driver (licencia, nombre, avatar, id_bus) VALUES (9011, 'Manuel Carrasco', 'manuel.png', 5678);
-INSERT INTO driver (licencia, nombre, avatar, id_bus) VALUES (9012, 'Patricia Conde', 'patricia.png', 9012);
-
+INSERT INTO driver (licencia, nombre, estado) VALUES (9001, 'Mario Gil', 1);
+INSERT INTO driver (licencia, nombre, estado) VALUES (9002, 'Ana Silva', 1);
+INSERT INTO driver (licencia, nombre, estado) VALUES (9003, 'Carlos Pérez', 0); 
+INSERT INTO driver (licencia, nombre, estado) VALUES (9004, 'Luisa Ramos', 1);
+INSERT INTO driver (licencia, nombre, estado) VALUES (9005, 'David Cobos', 1);
+INSERT INTO driver (licencia, nombre, estado) VALUES (9006, 'Elena Pozo', 1);
+INSERT INTO driver (licencia, nombre, estado) VALUES (9007, 'Alejandro Sanz', 0); 
+INSERT INTO driver (licencia, nombre, estado) VALUES (9008, 'Beatriz Luna', 1);
+INSERT INTO driver (licencia, nombre, estado) VALUES (9009, 'Javier Naranjo', 1);
+INSERT INTO driver (licencia, nombre, estado) VALUES (9010, 'Rocío Jurado', 1);
+INSERT INTO driver (licencia, nombre, estado) VALUES (9011, 'Manuel Carrasco', 1);
+INSERT INTO driver (licencia, nombre, estado) VALUES (9012, 'Patricia Conde', 0);
 
 
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_id, driver_id, route_id) 
+INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-01', 'MANANA', 1111, 9001, 101);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_id, driver_id, route_id) 
+INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-01', 'TARDE', 2222, 9002, 101);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_id, driver_id, route_id) 
+INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-01', 'MANANA', 3333, 9003, 102);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_id, driver_id, route_id) 
+INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-01', 'TARDE', 4444, 9004, 103);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_id, driver_id, route_id) 
+INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-02', 'MANANA', 5555, 9005, 104);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_id, driver_id, route_id) 
+INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-02', 'TARDE', 6666, 9006, 105);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_id, driver_id, route_id) 
+INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-02', 'MANANA', 7777, 9007, 106);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_id, driver_id, route_id) 
+INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-03', 'MANANA', 8888, 9008, 107);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_id, driver_id, route_id) 
+INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-03', 'TARDE', 9999, 9009, 108);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_id, driver_id, route_id) 
+INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-03', 'MANANA', 1234, 9010, 110);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_id, driver_id, route_id) 
+INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-03', 'TARDE', 5678, 9011, 110);
-INSERT INTO planificacion_ruta (dia_semana, horario, bus_id, driver_id, route_id) 
+INSERT INTO planificacion_ruta (dia_semana, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-04', 'MANANA', 9012, 9012, 112);
-*/
+
