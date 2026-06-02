@@ -48,6 +48,7 @@ public class DataInitializer implements CommandLineRunner {
         System.out.println(pr);
 
         pr.setDiaSemana2(DayOfWeek.FRIDAY);
+        pr.setDiaSemana(LocalDate.now());
         
         planificacionRutaRepository.save(pr);
         

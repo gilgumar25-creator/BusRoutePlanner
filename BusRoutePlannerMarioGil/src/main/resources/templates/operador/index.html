@@ -4,106 +4,190 @@
 <head>
 	<title>Panel de Control - BusRoute</title>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body class="bg bg-success d-flex flex-column min-vh-100">
+<body class="bg-dark d-flex flex-column min-vh-100">
 
 	<div th:replace="~{fragments/header :: cabecera}"></div>
 
 	<div class="d-flex flex-grow-1 container-fluid px-0">
 
-		<aside class="flex-shrink-0 p-4 bg-dark text-light border-end border-warning border-3" style="width: 250px;">
-			<h5 class="text-warning fw-bold text-uppercase big mb-3 text-center">URBAN BUS</h5>
-			<ul class="nav flex-column">
-				<li class="nav-item">
-					<a class="nav-link text-light border-bottom border-secondary py-2 text-uppercase small" th:href="@{/listaRutas}">
-						<i class="bi bi-map me-2 text-warning"></i>rutas
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link text-light border-bottom border-secondary py-2 text-uppercase small" th:href="@{/bus/listaBuses}">
-						<i class="bi bi-bus-front me-2 text-warning"></i>buses
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link text-light border-bottom border-secondary py-2 text-uppercase small" th:href="@{/driver/listaDrivers}">
-						<i class="bi bi-person-vcard me-2 text-warning"></i>conductores
-					</a>
-				</li>
-			</ul>
+		<aside class="flex-shrink-0 p-4 bg-dark text-light border-end border-warning border-3" style="width: 250px; margin-top: 120px;">
+			<div class="text-center mb-4 pb-3 border-bottom border-secondary border-opacity-25">
+				<h5 class="text-warning fw-bold text-uppercase tracking-wider m-0">URBAN BUS</h5>
+				<small class="text-secondary tracking-widest text-uppercase fs-7 d-block mt-1">Panel de Control</small>
+			</div>
+
+			<div class="nav flex-column gap-1">
+				<span class="text-muted text-uppercase small fw-bold tracking-wider mb-2 mt-2 px-2"
+					style="font-size: 0.75rem;">Mantenimiento</span>
+
+				<a class="nav-link text-light py-2 px-3 rounded-2 aside-link d-flex align-items-center"
+					th:href="@{/listaRutas}">
+					<i class="bi bi-map me-3 text-warning"></i>Rutas
+				</a>
+				<a class="nav-link text-light py-2 px-3 rounded-2 aside-link d-flex align-items-center"
+					th:href="@{/bus/listaBuses}">
+					<i class="bi bi-bus-front me-3 text-warning"></i>Buses
+				</a>
+				<a class="nav-link text-light py-2 px-3 rounded-2 aside-link d-flex align-items-center"
+					th:href="@{/driver/listaDrivers}">
+					<i class="bi bi-person-vcard me-3 text-warning"></i>Conductores
+				</a>
+
+				<span class="text-muted text-uppercase small fw-bold tracking-wider mb-2 mt-4 px-2"
+					style="font-size: 0.75rem;">Consultas e Informes</span>
+
+				<a class="nav-link text-light py-2 px-3 rounded-2 aside-link d-flex align-items-center"
+					th:href="@{/planificacionRuta/RutasMasUsadas}">
+					<i class="bi bi-graph-up-arrow me-3 text-warning"></i>Top Rutas
+				</a>
+				<a class="nav-link text-light py-2 px-3 rounded-2 aside-link d-flex align-items-center"
+					th:href="@{/driver/listaDrivers/activos}">
+					<i class="bi bi-person-check me-3 text-warning"></i>Personal Activo
+				</a>
+				<a class="nav-link text-light py-2 px-3 rounded-2 aside-link d-flex align-items-center"
+					th:href="@{/planificacionRuta}">
+					<i class="bi bi-calendar-range me-3 text-warning"></i>Viajes por Fecha
+				</a>
+			</div>
 		</aside>
 
-		<main class="flex-grow-1 p-5 bg-dark text-light overflow-auto">
-			<section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center align-items-stretch">
-				
-				<div class="col">
-					<div class="card h-100 bg-black border-secondary shadow-lg text-light rounded-4 overflow-hidden">
-						<div class="card-body border-top border-warning border-4 p-4 d-flex flex-column">
-							<div class="d-flex align-items-center justify-content-between mb-3">
-								<h3 class="h4 text-warning fw-bold text-uppercase mb-0 tracking-wide">Rutas</h3>
-								<div class="bg-warning text-dark rounded-circle p-2 d-inline-flex fs-4 shadow-sm">
-									<i class="bi bi-map-fill"></i>
+		<main class="flex-grow-1 p-5 text-light overflow-auto mt-5"
+			th:style="'background: url(' + @{/img/imagen-background.png} + ') no-repeat center center fixed; background-size: cover; min-height: 100vh;'">
+
+			<div class="mb-5">
+				<section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-5 mb-5">
+
+					<div class="col">
+						<div
+							class="card h-100 bg-black border-secondary text-light rounded-3 dashboard-card overflow-hidden">
+							<div class="card-body border-top border-warning border-4 p-4 d-flex flex-column">
+								<div class="d-flex align-items-center justify-content-between mb-3">
+									<h3 class="h5 text-warning fw-bold text-uppercase mb-0 tracking-wide">Rutas</h3>
+									<span class="text-warning fs-4"><i class="bi bi-map-fill"></i></span>
+								</div>
+								<p class="card-text text-secondary lh-base flex-grow-1 small m-0">
+									Administración total de formas de transporte, configurando el origen y el destino para que el usuario pueda llegar adecuadamente a su destino
+								</p>
+								<div class="mt-4">
+									<a th:href="@{/listaRutas}"
+										class="btn btn-warning w-100 fw-bold text-dark py-2 rounded-2">
+										Acceder al Panel
+									</a>
 								</div>
 							</div>
-							<p class="card-text text-secondary lh-base flex-grow-1 small">
-								Administración global de itinerarios y líneas de transporte. Configura orígenes, destinos estratégicos y gestiona el flujo máximo de vehículos permitidos concurrentemente.
-							</p>
-							<div class="mt-4">
-								<a th:href="@{/listaRutas}" class="btn btn-warning w-100 fw-bold text-dark py-2 rounded-3 shadow-sm">
-									<i class="bi bi-arrow-right-circle me-2"></i>Acceder al Panel
+						</div>
+					</div>
+
+					<div class="col">
+						<div
+							class="card h-100 bg-black border-secondary text-light rounded-3 dashboard-card overflow-hidden">
+							<div class="card-body border-top border-success border-4 p-4 d-flex flex-column">
+								<div class="d-flex align-items-center justify-content-between mb-3">
+									<h3 class="h5 text-success fw-bold text-uppercase mb-0 tracking-wide">Autobuses</h3>
+									<span class="text-success fs-4"><i class="bi bi-bus-front-fill"></i></span>
+								</div>
+								<p class="card-text text-secondary lh-base flex-grow-1 small m-0">
+									Control de los vehículos que disponemos.
+								</p>
+								<div class="mt-4">
+									<a th:href="@{/bus/listaBuses}"
+										class="btn btn-success w-100 fw-bold text-white py-2 rounded-2">
+										Gestionar Buses
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col">
+						<div
+							class="card h-100 bg-black border-secondary text-light rounded-3 dashboard-card overflow-hidden">
+							<div class="card-body border-top border-primary border-4 p-4 d-flex flex-column">
+								<div class="d-flex align-items-center justify-content-between mb-3">
+									<h3 class="h5 text-primary fw-bold text-uppercase mb-0 tracking-wide">Conductores</h3>
+									<span class="text-primary fs-4"><i class="bi bi-person-badge-fill"></i></span>
+								</div>
+								<p class="card-text text-secondary lh-base flex-grow-1 small m-0">
+									Registro técnico para poder asignar a los conductores más tarde a su correspondiente ruta.
+								</p>
+								<div class="mt-4">
+									<a th:href="@{/driver/listaDrivers}"
+										class="btn btn-primary w-100 fw-bold text-white py-2 rounded-2">
+										Ver Plantilla
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</section>
+			</div>
+
+			<div>
+				<section class="row row-cols-1 row-cols-lg-3 g-4 mt-5">
+
+					<div class="col">
+						<div class="card h-100 text-white dashboard-card"
+							style="background-color: #212529; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;">
+							<div class="card-body p-4 d-flex flex-column">
+								<div class="mb-2 text-warning fs-3"><i class="bi bi-bar-chart-line-fill"></i></div>
+								<h4 class="h5 fw-bold text-white mb-2">Rutas más Utilizadas</h4>
+								<p class="text-secondary small flex-grow-1 mb-4">
+									Muestra el ranking de las rutas más demandadas en el campo de Planificaciones.
+								</p>
+								<a th:href="@{/planificacionRuta/RutasMasUsadas}"
+									class="btn btn-outline-warning w-100 rounded-2 py-2 fw-semibold">
+									Ver Clasificación
 								</a>
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="col">
-					<div class="card h-100 bg-black border-secondary shadow-lg text-light rounded-4 overflow-hidden">
-						<div class="card-body border-top border-success border-4 p-4 d-flex flex-column">
-							<div class="d-flex align-items-center justify-content-between mb-3">
-								<h3 class="h4 text-success fw-bold text-uppercase mb-0 tracking-wide">Autobuses</h3>
-								<div class="bg-success text-white rounded-circle p-2 d-inline-flex fs-4 shadow-sm">
-									<i class="bi bi-bus-front-fill"></i>
-								</div>
-							</div>
-							<p class="card-text text-secondary lh-base flex-grow-1 small">
-								Control del parque móvil e inventario de la flota vehicular. Registra nuevas matrículas del sistema, modifica capacidades máximas y supervisa el estado de las unidades activas.
-							</p>
-							<div class="mt-4">
-								<a th:href="@{/bus/listaBuses}" class="btn btn-success w-100 fw-bold text-white py-2 rounded-3 shadow-sm">
-									<i class="bi bi-arrow-right-circle me-2"></i>Gestionar Buses
+					<div class="col">
+						<div class="card h-100 text-white dashboard-card"
+							style="background-color: #212529; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;">
+							<div class="card-body p-4 d-flex flex-column">
+								<div class="mb-2 text-warning fs-3"><i class="bi bi-shield-check"></i></div>
+								<h4 class="h5 fw-bold text-white mb-2">Conductores Activos</h4>
+								<p class="text-secondary small flex-grow-1 mb-4">
+									Filtrado sencillo sobre los conductores que actualmente se encuentran activos
+								</p>
+								<a th:href="@{/driver/listaDrivers/activos}"
+									class="btn btn-outline-warning w-100 rounded-2 py-2 fw-semibold">
+									Consultar Activos
 								</a>
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="col">
-					<div class="card h-100 bg-black border-secondary shadow-lg text-light rounded-4 overflow-hidden">
-						<div class="card-body border-top border-primary border-4 p-4 d-flex flex-column">
-							<div class="d-flex align-items-center justify-content-between mb-3">
-								<h3 class="h4 text-primary fw-bold text-uppercase mb-0 tracking-wide">Conductores</h3>
-								<div class="bg-primary text-white rounded-circle p-2 d-inline-flex fs-4 shadow-sm">
-									<i class="bi bi-person-badge-fill"></i>
-								</div>
-							</div>
-							<p class="card-text text-secondary lh-base flex-grow-1 small">
-								Registro técnico y asignación de la cuadrilla de operadores. Administra las fichas de los conductores del servicio, sus licencias de conducción y vinculaciones.
-							</p>
-							<div class="mt-4">
-								<a th:href="@{/driver/listaDrivers}" class="btn btn-primary w-100 fw-bold text-white py-2 rounded-3 shadow-sm">
-									<i class="bi bi-arrow-right-circle me-2"></i>Ver Plantilla
+					<div class="col">
+						<div class="card h-100 text-white dashboard-card"
+							style="background-color: #212529; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;">
+							<div class="card-body p-4 d-flex flex-column">
+								<div class="mb-2 text-warning fs-3"><i class="bi bi-calendar-event"></i></div>
+								<h4 class="h5 fw-bold text-white mb-2">Viajes por Fecha</h4>
+								<p class="text-secondary small flex-grow-1 mb-4">
+									Nos sirve para buscar una o más planificaciones en un día de la semana específico
+								</p>
+								<a th:href="@{/planificacionRuta}"
+									class="btn btn-outline-warning w-100 rounded-2 py-2 fw-semibold">
+									Buscar Por Fecha
 								</a>
 							</div>
 						</div>
 					</div>
-				</div>
 
-			</section>
+				</section>
+			</div>
+
 		</main>
 
 	</div>
