@@ -54,7 +54,7 @@ import lombok.RequiredArgsConstructor;
 	        model.addAttribute("planificacion", nueva);
 	        model.addAttribute("rutas", routeservice.findAll());
 	        model.addAttribute("buses", busservice.findAll());
-	        model.addAttribute("conductores", driverservice.findAll());
+	        model.addAttribute("conductores", driverservice.findByActivo());
 	        return "formPlanificacionRuta";
 	    }
 

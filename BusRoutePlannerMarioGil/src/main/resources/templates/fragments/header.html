@@ -47,11 +47,11 @@
 						</a>
 					</li>
 
-					<li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
-						<a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold"
-							th:href="@{/admin/listaUsuarios}">
-							<i class="bi bi-person-badge text-warning fs-5"></i> Usuarios
-						</a>
+					<li class="nav-item" sec:authorize="hasAuthority('ROLE_ADMIN')">
+					    <a class="nav-link text-white px-3 py-2 rounded-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider fw-bold"
+					       th:href="@{/admin/listaUsuarios}">
+					        <i class="bi bi-person-badge text-warning fs-5"></i> Usuarios
+					    </a>
 					</li>
 				</ul>
 
