@@ -32,6 +32,13 @@ public class ExceptionControllerAdvice {
 		return "errorPlanificacion";
 	}
 	
+	@ExceptionHandler(BusDuplicadoException.class)
+    public String handleBusDuplicado(BusDuplicadoException ex, Model model) {
+        model.addAttribute("errorTitulo", "Conflicto de Autobús");
+        model.addAttribute("errorMensaje", ex.getMessage());
+        return "errorBusDoble";
+    }
+	
 	
 
 	// 2. Manejo de una excepción propia del API de Java

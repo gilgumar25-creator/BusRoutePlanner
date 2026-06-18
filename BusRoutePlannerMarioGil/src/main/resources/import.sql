@@ -20,7 +20,7 @@ VALUES (109, 'La Rinconada', 'Alcalá de Guadaíra', 28.7, 1.15, 33.01, 2);
 INSERT INTO route (codigo, origen, destino, distancia, preciokilometro, precio_viaje, numero_maximo_buses_simultaneos) 
 VALUES (110, 'Dos Hermanas', 'Sevilla (Capital)', 14.3, 1.20, 17.16, 6);
 INSERT INTO route (codigo, origen, destino, distancia, preciokilometro, precio_viaje, numero_maximo_buses_simultaneos) 
-VALUES (111, 'Écija', 'Utrera', 92.4, 0.90, 83.16, 1);
+VALUES (111, 'Écija', 'Utrera', 92.4, 0.90, 83.16, 2);
 INSERT INTO route (codigo, origen, destino, distancia, preciokilometro, precio_viaje, numero_maximo_buses_simultaneos) 
 VALUES (112, 'Sevilla (Capital)', 'Palomares del Rio', 11.2, 1.35, 15.12, 3);
 
@@ -88,6 +88,9 @@ VALUES ('2026-06-03', 'WEDNESDAY', 'MANANA', 1234, 9010, 110);
 
 INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
 VALUES ('2026-06-03', 'WEDNESDAY', 'TARDE', 5678, 9011, 110);
+
+INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 
+VALUES ('2026-06-01', 'MONDAY', 'MANANA', 4444, 9004, 111);
 
 -- 2026-06-04 es Jueves -> THURSDAY
 INSERT INTO planificacion_ruta (dia_semana, dia_semana2, horario, bus_matricula, driver_licencia, route_codigo) 

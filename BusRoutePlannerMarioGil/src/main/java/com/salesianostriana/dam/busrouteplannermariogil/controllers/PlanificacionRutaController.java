@@ -122,7 +122,6 @@ import lombok.RequiredArgsConstructor;
 	    
 	    @GetMapping("/RutasMasUsadas")
 	    public String listarPlanificacionesMasUsadas(Model model) {
-	        // Recoge la lista de arrays de objetos (Ruta + Contador)
 	        List<Object[]> rankingRutas = prservicio.findByRutasMasUsadas();
 	        
 	        model.addAttribute("ranking", rankingRutas);

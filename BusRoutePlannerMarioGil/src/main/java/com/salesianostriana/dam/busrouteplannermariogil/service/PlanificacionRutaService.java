@@ -38,6 +38,14 @@ public class PlanificacionRutaService extends BaseServiceImplem<PlanificacionRut
 					"El conductor " + conductor.getNombre() + " ya cuenta con un turno asignado para el día "
 							+ pr.getDiaSemana() + ". No se le permite doblar turno (mañana y tarde) el mismo día.");
 		}
+		
+		boolean busOcupado = repository.existsByBusAndDiaSemanaAndHorario(pr.getBus(), pr.getDiaSemana(), pr.getHorario());
+
+        if (busOcupado) {
+            throw new com.salesianostriana.dam.busrouteplannermariogil.exceptions.BusDuplicadoException(
+                    "El autobús seleccionado ya se encuentra asignado para el día " 
+                            + pr.getDiaSemana() + " en el horario de " + pr.getHorario() + ".");
+        }
 
 		repository.save(pr);
 	}
